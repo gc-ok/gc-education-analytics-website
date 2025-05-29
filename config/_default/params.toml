@@ -119,7 +119,7 @@ smartTOCHideUnfocusedChildren = false
   showTaxonomies = true 
   showAuthorsBadges = true 
   showWordCount = true # Changed to true, can be interesting for readers
-  sharingLinks = [ "linkedin", "twitter", "facebook", "email"] # Kept a few common ones
+  sharingLinks = [] # Kept a few common ones
   showZenMode = true
 
 [list] # Settings for list pages like blog archives, tag pages etc.
