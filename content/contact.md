@@ -9,7 +9,7 @@ We'd love to hear from you! Whether you have questions about our services or wan
 **Email:** [gcastillo@gceducationanalytics.com](mailto:gcastillo@gceducationanalytics.com)
 
 
-<form action="https://formsubmit.co/gcastillo@gceducationanalytics.com" method="POST" class="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow space-y-6">
+<form action="https://formsubmit.co/43385c3b061425e22f953f610f16b8fe" method="POST" class="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow space-y-6">
   <!-- Hidden fields -->
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="http://gceducationanalytics.com/thank-you/">
