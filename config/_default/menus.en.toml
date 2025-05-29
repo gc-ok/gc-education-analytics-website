@@ -23,13 +23,13 @@
   [[main]]
   name = "Teacher Coverage"
   parent = "Services"
-  pageRef = "services/automated-teacher-covergae/"
+  pageRef = "services/automated-teacher-coverage/"
   weight = 35
 
 [[main]]
   name = "Customized Data Analysis"
   parent = "Services"
-  pageRef = "services/cusom-analysis/"
+  pageRef = "services/custom-analysis/"
   weight = 35
 
 [[main]]
