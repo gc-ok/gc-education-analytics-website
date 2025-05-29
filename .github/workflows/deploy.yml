@@ -1,56 +1,41 @@
 name: Deploy Hugo site to GitHub Pages
 
 on:
-  # Runs on pushes targeting the main (or master) branch
   push:
     branches:
-      - main # Or master, depending on your repository's default branch
-
-  # Allows you to run this workflow manually from the Actions tab on GitHub
+      - main
   workflow_dispatch:
 
-# Default to bash
 defaults:
   run:
     shell: bash
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: '0.127.0' # MAKE SURE THIS IS YOUR EXACT HUGO VERSION (e.g., the output of `hugo version`)
-      NODE_VERSION: '20'    # Node.js version (optional if not strictly needed by your project/theme for basic build)
+      HUGO_VERSION: '0.127.0' # MAKE SURE THIS IS YOUR EXACT HUGO VERSION
+      NODE_VERSION: '20'
     steps:
       - name: Install Hugo CLI
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       
-      # Setup Node.js - only truly necessary if your theme or your own assets pipeline actively uses npm/node at build time.
-      # Blowfish primarily uses Hugo's internal asset processing for Tailwind.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          # Cache 'npm' only if a package-lock.json exists at the root, otherwise caching does little.
-          # The action itself often handles this logic, so just specifying 'npm' is usually okay.
-          # The error you saw is more of a warning if no lock file is found and caching is attempted.
           cache: 'npm' 
-          cache-dependency-path: '**/package-lock.json' # Be more specific for caching if possible
+          # Removed cache-dependency-path: '**/package-lock.json'
 
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: recursive  # Fetch Hugo themes (Blowfish)
-          fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
+          submodules: recursive
+          fetch-depth: 0
 
-      # This step attempts to install dependencies if a package.json exists.
-      # For Blowfish, this might be relevant for the theme's own development tools,
-      # but not always for a standard site build if you haven't added a root package.json.
-      - name: Install Project/Theme Dependencies (if package.json exists)
-        # This step will only run if a package.json is found in the root or the theme.
-        # It will use `npm ci` which requires a lock file.
+      - name: Install Project/Theme Dependencies (if package.json and lock file exist)
         run: |
           if [ -f "package.json" ] && [ -f "package-lock.json" ]; then
             echo "Root package.json and package-lock.json found. Running npm ci..."
@@ -74,7 +59,6 @@ jobs:
         with:
           path: ./public 
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
