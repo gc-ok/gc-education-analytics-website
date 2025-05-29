@@ -1,0 +1,32 @@
+# Main menu
+[[main]]
+  name = "Home"
+  pageRef = "/" # Link to the homepage
+  weight = 10
+
+[[main]]
+  name = "About Us"
+  pageRef = "/about/" # Link to an 'about.md' page in your content folder
+  weight = 20
+
+[[main]]
+  name = "Services"
+  pageRef = "/services/" # Link to a 'services.md' page
+  weight = 30
+
+[[main]]
+  name = "Contact"
+  pageRef = "/contact/" # Link to a 'contact.md' page
+  weight = 40
+
+# Example for a Blog placeholder, uncomment if you want it
+[[main]]
+  name = "Blog"
+  pageRef = "/posts/" # Or "/blog/" depending on how Blowfish structures its blog section
+  weight = 50
+
+# Footer menu (example, if Blowfish supports it - check their docs)
+[[footer]]
+  name = "Privacy Policy"
+  pageRef = "/privacy/"
+  weight = 10

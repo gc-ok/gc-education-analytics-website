@@ -1,0 +1,206 @@
+# -- Theme Options --
+# These options control how the theme functions and allow you to
+# customise the display of your website.
+#
+# Refer to the theme docs for more details about each of these parameters.
+# https://blowfish.page/docs/configuration/#theme-parameters
+
+# Added Site Description (Tagline)
+description = "GC Education Analytics LLC: Empowering Educators, Simplifying Data."
+copyright = "© 2025 GC Education Analytics LLC. All Rights Reserved." # Hugo replaces {year}
+
+# Added Email for potential theme use (some themes use this for contact info)
+email = "gcastillo@gceducationanalytics.com"
+
+# Added Social Media links - theme will display icons for these
+# Refer to Blowfish docs for which icon names are supported (e.g., "linkedin", "facebook", "twitter")
+social = [
+  { name = "linkedin", link = "https://www.linkedin.com/in/gerardo-castillo-10a175b4/" }, # Replace # with your actual LinkedIn URL later
+  { name = "facebook", link = "#" }  # Replace # with your actual Facebook URL later
+  # { name = "email", link = "mailto:gcastillo@gceducationanalytics.com" } # Already have email above, but some themes use this for an icon
+]
+
+logo = "images/gceducationlogo.png" # Path relative to the 'assets' folder
+
+colorScheme = "noir" # Options: blowfish, default, dark, light, cyan, neutral, slate, zinc, stone, gray, orange, amber, yellow, lime, green, emerald, teal, sky, indigo, violet, purple, fuchsia, pink, rose. Try "slate", "zinc", "neutral", or "gray" with your dark logo.
+defaultAppearance = "light" # Changed from "dark". Your logo is dark gray with light text, a light site BG might provide good contrast. Experiment!
+autoSwitchAppearance = true
+
+enableSearch = true
+enableCodeCopy = true
+
+# replyByEmail = false # Keep commented unless you set up this feature per theme docs
+
+# mainSections = ["docs"] # If you don't have a "docs" section, recent items on homepage might be empty.
+# Let's adjust if your blog will be in "posts" or "blog", or if you have other main content sections.
+# For now, if you're creating an 'about' and 'services' page, these aren't usually main sections for "recent items".
+# Let's assume you might have a blog later in a 'posts' directory.
+mainSections = ["posts"] # Change "posts" to "blog" if your blog folder is named "blog"
+
+# robots = "" # Let Hugo generate this unless you have specific needs
+
+disableImageOptimization = false
+disableImageOptimizationMD = false # Keep this false, Hugo's image processing is good
+disableTextInHeader = true # If true, only logo shows in header. False shows site title/logo.
+# backgroundImageWidth = 1200 # Only if using specific background image features
+
+# Default images - good to have placeholders, but your actual content should specify its own images
+defaultBackgroundImage = "/img/background.svg" # Keep or replace with a generic background if you have one
+defaultFeaturedImage = "/img/featured.svg"   # Keep or replace
+defaultSocialImage = "/img/blowfish.jpg"     # Replace with your own social sharing image later (e.g., a version of your logo on a nice background)
+
+# ADDED ASSETS section for LOGO based on Blowfish documentation
+# Ensure your logo 'gceducationlogo.jpeg' is in 'static/images/'
+[assets]
+  favicon = "favicon.ico"
+
+
+[assets.logo]
+#    path = "images/gceducationlogo.jpeg"
+#    # If your logo's text is light and BG is dark, it should work on light/dark themes.
+    # If you have a version of your logo specifically for dark mode (e.g., dark text on transparent/light BG), specify it here:
+    # darkPath = "images/gceducationlogo_for_darkmode.jpeg"
+#    alt = "GC Education Analytics LLC Logo"
+    # You can optionally set width and height if needed, but often themes handle sizing.
+    # width = 150
+    # height = 50
+
+highlightCurrentMenuArea = true
+smartTOC = true
+smartTOCHideUnfocusedChildren = false
+
+[header]
+  layout = "fixed" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur. "fixed" is good.
+
+[footer]
+  showMenu = true # Shows menu items you might designate for the footer
+  showCopyright = true
+  showThemeAttribution = false # Good to keep if using a free theme, or you can set to false
+  showAppearanceSwitcher = true
+  showScrollToTop = true
+
+[homepage]
+  layout = "background" # This means your content/_index.md and its layout file will primarily define the homepage. This is flexible.
+  homepageImage = "/img/background.svg" # used in: hero, and card. You can set this if your 'custom' layout uses it.
+  showRecent = false # Let's turn this off until you have blog posts or a "docs" section.
+  showRecentItems = 3 # Reduced from 6
+  showMoreLink = true
+  # showMoreLinkDest = "docs" # Change this to "posts" or "blog" if that's where your main content will be.
+  showMoreLinkDest = "posts"
+  cardView = true # For list pages, if applicable
+  cardViewScreenWidth = true
+  layoutBackgroundBlur = true # only used when layout equals background
+  disableHeroImageFilter = true # only used when layout equals hero
+
+[article]
+  showDate = true # Changed to true, dates are useful for articles
+  showViews = false # Keep false unless you integrate a views counter
+  showLikes = false # Keep false unless you integrate a likes counter
+  showDateOnlyInArticle = false
+  showDateUpdated = true # Good to show if an article is updated
+  showAuthor = true
+  # showAuthorBottom = false
+  showHero = true # Whether to show a hero image at the top of articles
+  heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  layoutBackgroundBlur = true # only used when heroStyle equals background
+  showBreadcrumbs = true
+  showDraftLabel = true
+  showEdit = false # Changed to false, remove or point to your own repo later
+  # editURL = "https://github.com/nunocoracao/blowfish/tree/main/exampleSite/content" # Commented out
+  # editAppendPath = true # Commented out
+  seriesOpened = false
+  showHeadingAnchors = true
+  showPagination = true
+  invertPagination = false
+  showReadingTime = true
+  showTableOfContents = true # TOC is useful for longer articles
+  showRelatedContent = true
+  relatedContentLimit = 3 # Reduced from 6
+  showTaxonomies = true 
+  showAuthorsBadges = true 
+  showWordCount = true # Changed to true, can be interesting for readers
+  sharingLinks = [ "linkedin", "twitter", "facebook", "email"] # Kept a few common ones
+  showZenMode = true
+
+[list] # Settings for list pages like blog archives, tag pages etc.
+  showHero = false # Often list pages don't need a big hero image
+  heroStyle = "background"
+  layoutBackgroundBlur = true
+  layoutBackgroundHeaderSpace = false
+  showBreadcrumbs = true # Changed to true, can be helpful
+  showSummary = true  # Changed to true, summaries are good on list pages
+  showViews = false
+  showLikes = false
+  showTableOfContents = false # Usually not needed for list pages
+  showCards = true # Card view for lists is nice
+  orderByWeight = false # Default is usually by date for blogs/posts
+  groupByYear = true # Grouping posts by year on archive pages is nice
+  cardView = true
+  cardViewScreenWidth = false
+  constrainItemsWidth = false
+
+[sitemap]
+  excludedKinds = []
+
+[taxonomy] # Settings for individual taxonomy term pages (e.g., a page for a single tag)
+  showTermCount = true
+  showHero = true
+  heroStyle = "background"
+  showBreadcrumbs = true # Changed
+  showViews = false
+  showLikes = false
+  showTableOfContents = false # Usually not needed
+  cardView = true # Changed, cards can look good here
+
+[term] # Settings for pages listing items under a taxonomy term
+  showHero = false # Changed
+  heroStyle = "background"
+  showBreadcrumbs = true # Changed
+  showViews = false
+  showLikes = false
+  showTableOfContents = false
+  groupByYear = true # Changed
+  cardView = true
+  cardViewScreenWidth = false
+
+# Commenting out third-party analytics/services you likely don't need yet
+# [firebase]
+#   #apiKey = "AIzaSyB5tqlqDky77Vb4Tc4apiHV4hRZI18KGiY"
+#   #authDomain = "blowfish-21fff.firebaseapp.com"
+#   #projectId = "blowfish-21fff"
+#   #storageBucket = "blowfish-21fff.appspot.com"
+#   #messagingSenderId = "60108104191"
+#   #appId = "1:60108104191:web:039842ebe1370698b487ca"
+#   #measurementId = "G-PEDMYR1V0K"
+
+# [fathomAnalytics]
+#   # site = "ABC12345"
+#   # domain = "llama.yoursite.com"
+
+# [umamiAnalytics]
+#   # websiteid = "ABC12345"
+#   # domain = "llama.yoursite.com"
+#   # dataDomains = "yoursite.com,yoursite2.com"
+#   # scriptName = ""
+#   # enableTrackEvent = false
+
+# [selineAnalytics]
+#   # token = "XXXXXX"
+#   # enableTrackEvent = false
+
+# [buymeacoffee] # You can enable this later if you want to add a link
+#   identifier = "" # "nunocoracao" is the theme author's
+#   globalWidget = false # Changed to false
+#   globalWidgetMessage = ""
+#   globalWidgetColor = "#FFDD00"
+#   globalWidgetPosition = "Right"
+
+# [verification] # Add your verification codes here if you use Google Search Console, Bing Webmaster Tools, etc.
+#   # google = ""
+#   # bing = ""
+#   # pinterest = ""
+#   # yandex = ""
+
+# [rssnext]
+#   # feedId = ""
+#   # userId = ""

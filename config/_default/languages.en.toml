@@ -1,0 +1,11 @@
+languageName = "English"
+languageCode = "en-US" # Be specific if you like
+contentDir = "content/" # Standard practice if you plan multiple languages. If only English, Blowfish might just use root content/. Check theme docs.
+weight = 1 # If you had multiple languages, this sets the order
+
+title = "GC Education Analytics LLC" # Site title for English
+# You can also override params here for this language if needed
+[params]
+  description = "GC Education Analytics LLC: Empowering Educators, Simplifying Data."
+#   logo = "images/logo_en.png" # If you had a language-specific logo
+

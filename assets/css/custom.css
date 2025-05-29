@@ -1,0 +1,9 @@
+/* In assets/css/custom.css */
+#homepage-logo-container img {
+    max-width: 250px !important; /* Or your desired max-width. Let's try a small, obvious value. */
+    width: 100% !important;     /* Makes the image responsive within the max-width */
+    height: auto !important;    /* Maintain aspect ratio */
+    display: block !important;  /* Helps with centering if using mx-auto on the image itself */
+    margin-left: auto !important; /* Ensure centering */
+    margin-right: auto !important;/* Ensure centering */
+}

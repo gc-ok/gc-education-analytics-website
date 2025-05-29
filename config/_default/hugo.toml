@@ -1,0 +1,56 @@
+# -- Site Configuration --
+# Refer to the theme docs for more details about each of these parameters.
+# https://blowfish.page/docs/getting-started/
+
+theme = "blowfish"
+baseURL = "http://localhost:1313/" # Good for local testing. CHANGE THIS BEFORE DEPLOYING to your live domain like "https://www.gceducationanalytics.com/"
+title = "GC Education Analytics LLC" # Your Company Name
+defaultContentLanguage = "en"
+disableLanguages = [] # Keep this if you only plan for English for now
+
+# pluralizeListTitles = "true"
+
+enableRobotsTXT = true
+summaryLength = 30 # Number of words in summary (theme might use this)
+hasCJKLanguage = true # Keep if Blowfish example had it, may relate to character support
+
+buildDrafts = false # Set to true if you want to see draft posts locally without `hugo server -D`
+buildFuture = false # Set to true if you want to see posts scheduled for the future
+
+enableEmoji = true
+
+# googleAnalytics = "G-PEDMYR1V0K" # Replace with your OWN ID later or delete/comment out
+# We will comment this out for now by adding a '#' at the beginning of the line
+# googleAnalytics = "G-PEDMYR1V0K" 
+
+# ...existing code...
+
+[pagination]
+pagerSize = 10 # Default is 10, 102 was a bit high unless you have a reason for it.
+
+[imaging]
+anchor = 'Center'
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+author = "authors"
+series = "series"
+
+[sitemap]
+changefreq = 'always'
+filename = 'sitemap.xml'
+priority = 0.5
+
+[outputs]
+home = ["HTML", "RSS", "JSON"] # Keep as is, Blowfish uses these
+
+[related]
+threshold = 80 # Default is 80, 0 might show too many unrelated things.
+toLower = false
+
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+# ...existing code...
+# ... (keep other related indices as they were) ...
