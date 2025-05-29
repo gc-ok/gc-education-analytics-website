@@ -17,7 +17,7 @@ hero:
   >}}
 </div>
 
-# Unlock More Time for Working with People—Spend Less on Data and Tasks
+# Unlock More Time to Work with Students—Spend Less on Data and Computer Tasks
 
 GC Education Analytics empowers schools by not only transforming overwhelming spreadsheets into clear, actionable insights, but by also automating day-to-day tasks in education.
 
