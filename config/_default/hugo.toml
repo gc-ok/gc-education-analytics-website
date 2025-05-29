@@ -3,7 +3,7 @@
 # https://blowfish.page/docs/getting-started/
 
 theme = "blowfish"
-baseURL = "http://localhost:1313/" # Good for local testing. CHANGE THIS BEFORE DEPLOYING to your live domain like "https://www.gceducationanalytics.com/"
+baseURL = "gceducationanalytics.com" # Good for local testing. CHANGE THIS BEFORE DEPLOYING to your live domain like "https://www.gceducationanalytics.com/"
 title = "GC Education Analytics LLC" # Your Company Name
 defaultContentLanguage = "en"
 disableLanguages = [] # Keep this if you only plan for English for now
