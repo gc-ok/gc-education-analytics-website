@@ -28,8 +28,6 @@ Led by Gerardo Castillo, GC Education Analytics operates at the intersection of 
 
 This unique analytical and research background is powerfully combined with real-world, on-the-ground experience. As an ongoing classroom teacher who began his educational career with Teach For America in Oklahoma City, Gerardo intimately understands the daily realities, pressures, and profound rewards of working within a school system. This isn't just about algorithms and databases; it's about understanding the 'why' behind the data – the students, the teachers, and the community. Currently pursuing a Master's degree in Curriculum and Instruction, Gerardo is further deepening his commitment to pedagogical excellence and ensuring that all data solutions are grounded in sound educational principles.
 
-Our philosophy is built on a few key pillars:
-
 
 ---
 
