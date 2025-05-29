@@ -9,10 +9,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab on GitHub
   workflow_dispatch:
 
-# Add this permissions block
+# Add this permissions block - ENSURE id-token: write IS PRESENT
 permissions:
   contents: read    # Allows actions to check out the repository content
   pages: write      # Allows actions to deploy to GitHub Pages
+  id-token: write   # REQUIRED for actions/deploy-pages to get an OIDC token
 
 # Default to bash
 defaults:
@@ -24,7 +25,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: '0.127.0' # MAKE SURE THIS IS YOUR EXACT HUGO VERSION (e.g., the output of `hugo version`)
+      HUGO_VERSION: '0.127.0' # MAKE SURE THIS IS YOUR EXACT HUGO VERSION
       NODE_VERSION: '20'    # Node.js version (optional if not strictly needed)
     steps:
       - name: Install Hugo CLI
@@ -36,9 +37,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          # If you do not have a package-lock.json at the root of your project,
-          # removing or commenting out 'cache: npm' can prevent errors if no lock file is found.
-          # cache: 'npm' 
+          # cache: 'npm' # Commented out as per previous discussion if no root package-lock.json
 
       - name: Checkout repository
         uses: actions/checkout@v4
