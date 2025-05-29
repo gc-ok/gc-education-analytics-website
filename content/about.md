@@ -30,16 +30,6 @@ This unique analytical and research background is powerfully combined with real-
 
 Our philosophy is built on a few key pillars:
 
-* **Educator-First Design:** We believe technology should serve educators, making their lives easier and their impact greater.
-    * *[How do your specific experiences as a teacher directly influence the way you design solutions or consult with schools? Are there particular frustrations you aim to eliminate for other educators? Please elaborate here.]*
-* **Practical Application of Data:** It's not enough for data to be accurate; it must be actionable and accessible.
-    * *[What's your process for ensuring that the analytical insights you provide are easily understood and can be practically implemented by school staff with varying levels of data literacy? Please elaborate here.]*
-* **Collaborative Partnership:** We don't offer one-size-fits-all products. We work closely with each school to understand its unique student population, existing systems, and specific goals.
-    * *[Can you describe the ideal collaborative relationship you envision with a partner school? Please elaborate here.]*
-* **Ethical & Equitable Use of Analytics:** We are committed to ensuring that data is used responsibly and contributes to equitable outcomes for all students.
-    * *[How do you approach potential biases in data or algorithms, especially considering your focus on at-risk students? Please elaborate here.]*
-
-This blend of scientific analytical training, firsthand teaching experience, and a commitment to ongoing learning in curriculum and data analytics allows GC Education Analytics to offer solutions that are not only innovative but also deeply empathetic and practically effective for the educational environment.
 
 ---
 
@@ -60,6 +50,6 @@ At GC Education Analytics LLC, our work is guided by these fundamental principle
 We are excited about the potential to help your school harness the power of its data to create a more connected and efficient educational environment. If our mission and approach resonate with you, we'd love to explore how we can support your goals.
 
 <div class="mt-6 text-center">
-    {{< button href="/contact/" >}}Let's Discuss Your School's Needs{{< /button >}}
+    {{< button href="/contact/" >}}Let's Discuss Your School's Needs{{< /button >}} <br> <br>
     {{< button href="/services/" >}}Explore Our Services{{< /button >}} 
     </div>
