@@ -1,21 +1,31 @@
 name: Deploy Hugo site to GitHub Pages
 
 on:
+  # Runs on pushes targeting the main (or master) branch
   push:
     branches:
-      - main
+      - main # Or master, depending on your repository's default branch
+
+  # Allows you to run this workflow manually from the Actions tab on GitHub
   workflow_dispatch:
 
+# Add this permissions block
+permissions:
+  contents: read    # Allows actions to check out the repository content
+  pages: write      # Allows actions to deploy to GitHub Pages
+
+# Default to bash
 defaults:
   run:
     shell: bash
 
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: '0.127.0' # MAKE SURE THIS IS YOUR EXACT HUGO VERSION
-      NODE_VERSION: '20'
+      HUGO_VERSION: '0.127.0' # MAKE SURE THIS IS YOUR EXACT HUGO VERSION (e.g., the output of `hugo version`)
+      NODE_VERSION: '20'    # Node.js version (optional if not strictly needed)
     steps:
       - name: Install Hugo CLI
         run: |
@@ -27,14 +37,14 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           # If you do not have a package-lock.json at the root of your project,
-          # remove or comment out the 'cache' line to avoid this error.
-          # cache: 'npm' # <--- REMOVE OR COMMENT THIS LINE IF NO ROOT package-lock.json
+          # removing or commenting out 'cache: npm' can prevent errors if no lock file is found.
+          # cache: 'npm' 
 
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: recursive
-          fetch-depth: 0
+          submodules: recursive  # Fetch Hugo themes (Blowfish)
+          fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
 
       - name: Install Project/Theme Dependencies (if package.json and lock file exist)
         run: |
@@ -60,6 +70,7 @@ jobs:
         with:
           path: ./public 
 
+  # Deployment job
   deploy:
     environment:
       name: github-pages
