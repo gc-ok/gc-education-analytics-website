@@ -66,8 +66,6 @@ Our Automated Teacher Coverage program is typically built as a custom web applic
 * **Data Management:** Securely managed within your school's G Suite environment or a dedicated database, ensuring data privacy.
 * **Integration:** Potential for integration with existing school calendar or HR systems.
 
-*(You can elaborate here on any specific technologies if you feel it's relevant, but for this service, focusing on the workflow and benefits might be more impactful than deep technical dives unless specifically asked by a tech-savvy client.)*
-
 ---
 
 ## Anticipated Impact & Outcomes
