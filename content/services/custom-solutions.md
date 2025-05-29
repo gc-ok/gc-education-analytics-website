@@ -42,15 +42,6 @@ Off-the-shelf platforms can’t accommodate granular policy or local customizati
 - **APIs:** Google Workspace, RESTful endpoints in Flask
 - **Auth:** OAuth2 via Google, role-based access
 
-```javascript
-// Example Firestore write
-await firestore.collection('requests').add({
-  user: currentUser, status: 'pending', created: Date.now()
-});
-```
-
----
-
 ## Impact
 - Automate routine tasks → recover hours per week
 - Improve data integrity and compliance

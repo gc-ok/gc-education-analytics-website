@@ -41,12 +41,7 @@ Standard reports fail to differentiate question quality, subgroup performance, a
 - **Models:** 1PL/2PL/3PL IRT, Cronbach’s alpha, ANOVA, regression analysis
 - **Outputs:** Interactive dashboards, static reports, API endpoints
 
-```r
-# Fit a 2PL IRT model
-library(mirt)
-mod <- mirt(data_matrix, 2)
-plot(mod, type='trace')
-```
+
 ---
 
 ## Impact

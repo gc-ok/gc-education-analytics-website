@@ -47,10 +47,3 @@ Coordinating teacher coverage through email chains and scattered spreadsheets wa
 - **Notifications:** Gmail API, Twilio SMS integration
 - **Logic:** App Script triggers (`PropertiesService`, `ClockTrigger`) and queue sorting
 
-```python
-# Example pseudocode for scheduling logic
-availability = fetchTeacherAvailability()
-queue = sortByMetrics(availability)
-assignments = distributeCoverage(queue)
-notifyTeachers(assignments)
-logAssignments(assignments)

@@ -2,26 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GC Education Analytics LLC: Empowering Educators Through Data on GC Education Analytics LLC</title>
-    <link>http://localhost:1313/</link>
+    <link>//localhost:1313/</link>
     <description>Recent content in GC Education Analytics LLC: Empowering Educators Through Data on GC Education Analytics LLC</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>© 2025 GC Education Analytics LLC. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 28 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>At-Risk Student Analysis &amp; Intervention</title>
-      <link>http://localhost:1313/services/at-risk-analysis/</link>
+      <link>//localhost:1313/services/at-risk-analysis/</link>
       <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/services/at-risk-analysis/</guid>
-      <description>&lt;div class=&#34;text-center&#34;&gt;
-  
+      <guid>//localhost:1313/services/at-risk-analysis/</guid>
+      <description>&lt;p&gt;
+ &lt;div class=&#34;text-center&#34;&gt;
+
   &lt;figure&gt;
-        &lt;img class=&#34;my-0 rounded-md mx-auto mb-8 rounded-lg shadow-lg&#34; src=&#34;images/services/at-risk-dashboard.png&#34; alt=&#34;At-Risk Dashboard&#34; /&gt;
-    &lt;figcaption&gt;Predictive risk dashboard&lt;/figcaption&gt;
+          &lt;img
+            class=&#34;my-0 rounded-md mx-auto mb-8 rounded-lg shadow-lg&#34;
+            srcset=&#34;
+            /images/at-risk-dashboard_hu_aecac2054f2a5c2e.png 330w,
+            /images/at-risk-dashboard_hu_c4e95cda14c2ed5c.png 660w,
+            /images/at-risk-dashboard_hu_38c779583c72fc02.png 1024w,
+            /images/at-risk-dashboard_hu_a6c7ff4612cfc27c.png 2x&#34;
+            src=&#34;//localhost:1313/images/at-risk-dashboard_hu_c4e95cda14c2ed5c.png&#34;
+            data-zoom-src=&#34;//localhost:1313/images/at-risk-dashboard_hu_a6c7ff4612cfc27c.png&#34;
+            alt=&#34;Predictive At-Risk Student Dashboard&#34;
+          /&gt;
     
-    &lt;/figure&gt;
+    
+    &lt;/figure&gt;&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;h1 class=&#34;relative group&#34;&gt;At-Risk Student Analysis &amp;amp; Intervention 
@@ -34,16 +45,16 @@
     &lt;/span&gt;        
     
 &lt;/h1&gt;
-&lt;p&gt;Predict academic risks before they materialize, enabling timely, data-driven interventions for your most vulnerable learners.&lt;/p&gt;</description>
+&lt;p&gt;Predict academic risks before they materialize. Our AI-powered analysis enables your school to implement timely, data-driven interventions, fostering success for your most vulnerable learners.&lt;/p&gt;</description>
       
     </item>
     
     <item>
       <title>Automated Teacher Coverage Program</title>
-      <link>http://localhost:1313/services/automated-teacher-coverage/</link>
+      <link>//localhost:1313/services/automated-teacher-coverage/</link>
       <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/services/automated-teacher-coverage/</guid>
+      <guid>//localhost:1313/services/automated-teacher-coverage/</guid>
       <description>&lt;div class=&#34;text-center&#34;&gt;
   
   &lt;figure&gt;
@@ -69,10 +80,10 @@
     
     <item>
       <title>Custom Data Analysis &amp; Reporting</title>
-      <link>http://localhost:1313/services/custom-analysis/</link>
+      <link>//localhost:1313/services/custom-analysis/</link>
       <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/services/custom-analysis/</guid>
+      <guid>//localhost:1313/services/custom-analysis/</guid>
       <description>&lt;div class=&#34;text-center&#34;&gt;
   
   &lt;figure&gt;
@@ -98,10 +109,10 @@
     
     <item>
       <title>Personalized Software &amp; Data Solutions</title>
-      <link>http://localhost:1313/services/custom-solutions/</link>
+      <link>//localhost:1313/services/custom-solutions/</link>
       <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/services/custom-solutions/</guid>
+      <guid>//localhost:1313/services/custom-solutions/</guid>
       <description>&lt;div class=&#34;text-center&#34;&gt;
   
   &lt;figure&gt;
@@ -127,38 +138,38 @@
     
     <item>
       <title>Thank You!</title>
-      <link>http://localhost:1313/thank-you/</link>
+      <link>//localhost:1313/thank-you/</link>
       <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/thank-you/</guid>
+      <guid>//localhost:1313/thank-you/</guid>
       <description>&lt;p&gt;Your message has been successfully submitted.&lt;/p&gt;
 &lt;p&gt;We appreciate you contacting us and will get back to you as soon as possible.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/&#34;&gt;Return to Homepage&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;//localhost:1313/&#34;&gt;Return to Homepage&lt;/a&gt;&lt;/p&gt;</description>
       
     </item>
     
     <item>
       <title>About GC Education Analytics LLC</title>
-      <link>http://localhost:1313/about/</link>
+      <link>//localhost:1313/about/</link>
       <pubDate>Tue, 27 May 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/about/</guid>
+      <guid>//localhost:1313/about/</guid>
       <description>&lt;p&gt;GC Education Analytics LLC is dedicated to empowering educational institutions by streamlining data processes and automating routine tasks. Our mission is to help educators spend less time on data management and more time fostering meaningful connections with students, teachers, and the wider school community.&lt;/p&gt;</description>
       
     </item>
     
     <item>
       <title>Contact Us</title>
-      <link>http://localhost:1313/contact/</link>
+      <link>//localhost:1313/contact/</link>
       <pubDate>Tue, 27 May 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/contact/</guid>
+      <guid>//localhost:1313/contact/</guid>
       <description>&lt;p&gt;We&amp;rsquo;d love to hear from you! Whether you have questions about our services or want to discuss your school&amp;rsquo;s specific needs, please reach out.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; &lt;a href=&#34;mailto:gcastillo@gceducationanalytics.com&#34;&gt;gcastillo@gceducationanalytics.com&lt;/a&gt;&lt;/p&gt;
 &lt;form action=&#34;https://formsubmit.co/43385c3b061425e22f953f610f16b8fe&#34; method=&#34;POST&#34; class=&#34;max-w-2xl mx-auto p-6 bg-white rounded-xl shadow space-y-6&#34;&gt;
   &lt;!-- Hidden fields --&gt;
   &lt;input type=&#34;hidden&#34; name=&#34;_captcha&#34; value=&#34;false&#34;&gt;
-  &lt;input type=&#34;hidden&#34; name=&#34;_next&#34; value=&#34;http://localhost:1313/thank-you/&#34;&gt;
+  &lt;input type=&#34;hidden&#34; name=&#34;_next&#34; value=&#34;http://gceducationanalytics.com/thank-you/&#34;&gt;
   &lt;input type=&#34;text&#34; name=&#34;_honey&#34; style=&#34;display:none&#34;&gt;
   &lt;!-- Name --&gt;
   &lt;div&gt;
@@ -192,10 +203,10 @@
     
     <item>
       <title>Our Services</title>
-      <link>http://localhost:1313/services/</link>
+      <link>//localhost:1313/services/</link>
       <pubDate>Tue, 27 May 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/services/</guid>
+      <guid>//localhost:1313/services/</guid>
       <description>&lt;p&gt;At GC Education Analytics LLC, we offer specialized solutions to meet the unique data and software needs of educational institutions.&lt;/p&gt;
 
 &lt;h2 class=&#34;relative group&#34;&gt;In-House Teacher Coverage Program 

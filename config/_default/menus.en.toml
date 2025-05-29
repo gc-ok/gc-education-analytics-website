@@ -15,6 +15,30 @@
   weight = 30
 
 [[main]]
+  name = "At-Risk Analysis"
+  parent = "Services"
+  pageRef = "services/at-risk-analysis/"
+  weight = 35
+
+  [[main]]
+  name = "Teacher Coverage"
+  parent = "Services"
+  pageRef = "services/automated-teacher-covergae/"
+  weight = 35
+
+[[main]]
+  name = "Customized Data Analysis"
+  parent = "Services"
+  pageRef = "services/cusom-analysis/"
+  weight = 35
+
+[[main]]
+  name = "Custom Software"
+  parent = "Services"
+  pageRef = "services/custom-solutions/"
+  weight = 35
+
+[[main]]
   name = "Contact"
   pageRef = "/contact/" # Link to a 'contact.md' page
   weight = 40
