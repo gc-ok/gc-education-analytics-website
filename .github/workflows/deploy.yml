@@ -26,8 +26,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm' 
-          # Removed cache-dependency-path: '**/package-lock.json'
+          # If you do not have a package-lock.json at the root of your project,
+          # remove or comment out the 'cache' line to avoid this error.
+          # cache: 'npm' # <--- REMOVE OR COMMENT THIS LINE IF NO ROOT package-lock.json
 
       - name: Checkout repository
         uses: actions/checkout@v4
