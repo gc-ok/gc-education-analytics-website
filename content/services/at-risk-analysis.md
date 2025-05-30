@@ -71,7 +71,7 @@ By implementing a tailored At-Risk Student Analysis system, your institution can
 
 ## Technical Details: Under the Hood
 
-Feel free to read the following section if you would like some more information on how machine learning models are used in the at-rosk analysis
+Feel free to read the following section if you would like some more information on how machine learning models are used in the at-risk analysis
 
 Our analytical approach leverages established machine learning techniques to provide reliable and interpretable predictions.
 
