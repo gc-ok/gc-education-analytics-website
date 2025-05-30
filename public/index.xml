@@ -7,7 +7,121 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>© 2025 GC Education Analytics LLC. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 28 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About GC Education Analytics LLC</title>
+      <link>//localhost:1313/about/</link>
+      <pubDate>Thu, 29 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/about/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;About GC Education Analytics LLC 
+    &lt;div id=&#34;about-gc-education-analytics-llc&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#about-gc-education-analytics-llc&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;div class=&#34;lead text-neutral-500 dark:text-neutral-400 !mb-9 text-xl&#34;&gt;
+  At GC Education Analytics LLC, we are dedicated to empowering educational institutions by streamlining data processes and automating routine tasks. Our core mission is to help educators spend less time on data management and more time fostering meaningful connections with students, teachers, and the wider school community.
+&lt;/div&gt;
+
+&lt;p&gt;We believe that data, when used effectively, can be a powerful catalyst for positive change in education. Our goal is to shift the focus from administrative burdens to enhancing the educational experience through intelligent, intuitive data solutions and thoughtful automation. We provide the tools and expertise for data-informed decision-making, enabling schools to optimize their resources and focus on what truly matters: fostering an environment where every student can thrive and every educator feels empowered.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Advanced Data Analysis &amp; Strategic Reporting</title>
+      <link>//localhost:1313/services/custom-analysis/</link>
+      <pubDate>Thu, 29 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/services/custom-analysis/</guid>
+      <description>&lt;p&gt;
+ &lt;div class=&#34;text-center&#34;&gt;
+
+  &lt;figure&gt;
+        &lt;img class=&#34;my-0 rounded-md mx-auto mb-8 rounded-lg shadow-lg&#34; src=&#34;images/services/advanced-analytics-visual.png&#34; alt=&#34;Advanced Data Visualization&#34; /&gt;
+    &lt;figcaption&gt;Example: Uncovering deeper insights through comprehensive data analysis.&lt;/figcaption&gt;
+    
+    &lt;/figure&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;h1 class=&#34;relative group&#34;&gt;Advanced Data Analysis &amp;amp; Strategic Reporting 
+    &lt;div id=&#34;advanced-data-analysis--strategic-reporting&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#advanced-data-analysis--strategic-reporting&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;Unlock the full potential of your school&amp;rsquo;s data. We move beyond surface-level graphs to provide robust statistical analysis, uncovering significant trends, correlations, and comparisons that inform high-impact strategies.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Automated In-House Teacher Coverage Program</title>
+      <link>//localhost:1313/services/automated-teacher-coverage/</link>
+      <pubDate>Thu, 29 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/services/automated-teacher-coverage/</guid>
+      <description>&lt;p&gt;
+ &lt;div class=&#34;text-center&#34;&gt;
+
+  &lt;figure&gt;
+        &lt;img class=&#34;my-0 rounded-md mx-auto mb-8 rounded-lg shadow-lg&#34; src=&#34;images/services/teacher-coverage-dashboard.png&#34; alt=&#34;Teacher Coverage Automation Dashboard&#34; /&gt;
+    &lt;figcaption&gt;Example: Intuitive dashboard for managing teacher absences and coverage.&lt;/figcaption&gt;
+    
+    &lt;/figure&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;h1 class=&#34;relative group&#34;&gt;Automated In-House Teacher Coverage 
+    &lt;div id=&#34;automated-in-house-teacher-coverage&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#automated-in-house-teacher-coverage&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;Reduce administrative overhead and ensure seamless classroom continuity with our intelligent system for managing in-house teacher absences and coverage assignments.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Personalized Software Development for Schools</title>
+      <link>//localhost:1313/services/custom-solutions/</link>
+      <pubDate>Thu, 29 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/services/custom-solutions/</guid>
+      <description>&lt;p&gt;
+ &lt;div class=&#34;text-center&#34;&gt;
+
+  &lt;figure&gt;
+        &lt;img class=&#34;my-0 rounded-md mx-auto mb-8 rounded-lg shadow-lg&#34; src=&#34;images/services/custom-software-mockup.png&#34; alt=&#34;Mockup of custom school software&#34; /&gt;
+    &lt;figcaption&gt;Example: Tailored software interface designed for school efficiency.&lt;/figcaption&gt;
+    
+    &lt;/figure&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;h1 class=&#34;relative group&#34;&gt;Personalized Software Development for Schools 
+    &lt;div id=&#34;personalized-software-development-for-schools&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
+            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#personalized-software-development-for-schools&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;Off-the-shelf software doesn&amp;rsquo;t always fit the unique needs of your school. We design and build custom software solutions—from timesheet automation to specialized coaching hubs—to perfectly match your processes and enhance operational efficiency.&lt;/p&gt;</description>
+      
+    </item>
     
     <item>
       <title>At-Risk Student Analysis &amp; Intervention</title>
@@ -50,93 +164,6 @@
     </item>
     
     <item>
-      <title>Automated Teacher Coverage Program</title>
-      <link>//localhost:1313/services/automated-teacher-coverage/</link>
-      <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
-      
-      <guid>//localhost:1313/services/automated-teacher-coverage/</guid>
-      <description>&lt;div class=&#34;text-center&#34;&gt;
-  
-  &lt;figure&gt;
-        &lt;img class=&#34;my-0 rounded-md mx-auto mb-8 rounded-lg shadow-lg&#34; src=&#34;images/services/teacher-coverage.png&#34; alt=&#34;Teacher Coverage Dashboard&#34; /&gt;
-    &lt;figcaption&gt;Automated teacher coverage dashboard&lt;/figcaption&gt;
-    
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;h1 class=&#34;relative group&#34;&gt;Automated Teacher Coverage Program 
-    &lt;div id=&#34;automated-teacher-coverage-program&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
-    
-    &lt;span
-        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
-        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
-            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#automated-teacher-coverage-program&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
-    &lt;/span&gt;        
-    
-&lt;/h1&gt;
-&lt;p&gt;Empower your staff and eliminate chaos with our in-house substitute coordination tool. Designed for schools that value transparency, equity, and efficiency.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Custom Data Analysis &amp; Reporting</title>
-      <link>//localhost:1313/services/custom-analysis/</link>
-      <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
-      
-      <guid>//localhost:1313/services/custom-analysis/</guid>
-      <description>&lt;div class=&#34;text-center&#34;&gt;
-  
-  &lt;figure&gt;
-        &lt;img class=&#34;my-0 rounded-md mx-auto mb-8 rounded-lg shadow-lg&#34; src=&#34;images/services/data-reporting.png&#34; alt=&#34;Data Analysis Report&#34; /&gt;
-    &lt;figcaption&gt;Standards analysis heatmap&lt;/figcaption&gt;
-    
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;h1 class=&#34;relative group&#34;&gt;Custom Data Analysis &amp;amp; Reporting 
-    &lt;div id=&#34;custom-data-analysis--reporting&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
-    
-    &lt;span
-        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
-        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
-            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#custom-data-analysis--reporting&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
-    &lt;/span&gt;        
-    
-&lt;/h1&gt;
-&lt;p&gt;Move beyond averages with deep-dive analytics that reveal instructional levers and performance disparities.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Personalized Software &amp; Data Solutions</title>
-      <link>//localhost:1313/services/custom-solutions/</link>
-      <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
-      
-      <guid>//localhost:1313/services/custom-solutions/</guid>
-      <description>&lt;div class=&#34;text-center&#34;&gt;
-  
-  &lt;figure&gt;
-        &lt;img class=&#34;my-0 rounded-md mx-auto mb-8 rounded-lg shadow-lg&#34; src=&#34;images/services/custom-dev.png&#34; alt=&#34;Custom Solutions UI&#34; /&gt;
-    &lt;figcaption&gt;Custom application interface&lt;/figcaption&gt;
-    
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;h1 class=&#34;relative group&#34;&gt;Personalized Software &amp;amp; Data Solutions 
-    &lt;div id=&#34;personalized-software--data-solutions&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
-    
-    &lt;span
-        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100&#34;&gt;
-        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34;
-            style=&#34;text-decoration-line: none !important;&#34; href=&#34;#personalized-software--data-solutions&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
-    &lt;/span&gt;        
-    
-&lt;/h1&gt;
-&lt;p&gt;Replace fragmented workflows with bespoke applications designed for your school’s precise needs.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
       <title>Thank You!</title>
       <link>//localhost:1313/thank-you/</link>
       <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
@@ -145,16 +172,6 @@
       <description>&lt;p&gt;Your message has been successfully submitted.&lt;/p&gt;
 &lt;p&gt;We appreciate you contacting us and will get back to you as soon as possible.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;//localhost:1313/&#34;&gt;Return to Homepage&lt;/a&gt;&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>About GC Education Analytics LLC</title>
-      <link>//localhost:1313/about/</link>
-      <pubDate>Tue, 27 May 2025 00:00:00 +0000</pubDate>
-      
-      <guid>//localhost:1313/about/</guid>
-      <description>&lt;p&gt;GC Education Analytics LLC is dedicated to empowering educational institutions by streamlining data processes and automating routine tasks. Our mission is to help educators spend less time on data management and more time fostering meaningful connections with students, teachers, and the wider school community.&lt;/p&gt;</description>
       
     </item>
     

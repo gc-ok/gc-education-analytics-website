@@ -25,7 +25,7 @@ GC Education Analytics empowers schools by not only transforming overwhelming sp
 
 ### Feel free to watch this video for more information
 
-{{< youtubeLite id="vDiDeDEDMjw" label="Promotional Video for GC Education Analytics LLC" >}}
+{{< youtubeLite id="otRejS6H4hU" label="Promotional Video for GC Education Analytics LLC" >}}
 
 
 
