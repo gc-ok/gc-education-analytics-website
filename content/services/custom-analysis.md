@@ -7,7 +7,7 @@ description: "Go beyond basic graphs. We provide in-depth statistical analysis, 
 ---
 
 {{< katex >}} <div class="text-center">
-  {{< figure src="images/services/advanced-analytics-visual.png" alt="Advanced Data Visualization" class="mx-auto mb-8 rounded-lg shadow-lg" caption="Example: Uncovering deeper insights through comprehensive data analysis." >}}
+  {{< figure src="images/data-analysis.png" alt="Advanced Data Visualization" class="mx-auto mb-4 rounded-lg shadow-lg" caption="Educational insights through data — where learning meets analysis." >}}
   </div>
 
 # Advanced Data Analysis & Strategic Reporting

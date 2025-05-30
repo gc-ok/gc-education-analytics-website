@@ -7,7 +7,7 @@ description: "Custom-built software solutions to streamline your school's unique
 ---
 
 {{< katex >}} <div class="text-center">
-  {{< figure src="images/services/custom-software-mockup.png" alt="Mockup of custom school software" class="mx-auto mb-8 rounded-lg shadow-lg" caption="Example: Tailored software interface designed for school efficiency." >}}
+  {{< figure src="images/software-development.png" alt="Mockup of custom school software" class="mx-auto mb-4 rounded-lg shadow-lg" caption="Software can be coded to your school's needs (Stock Image)" >}}
   </div>
 
 # Personalized Software Development for Schools
