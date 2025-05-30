@@ -18,7 +18,7 @@ buildDrafts = false # Set to true if you want to see draft posts locally without
 buildFuture = false # Set to true if you want to see posts scheduled for the future
 
 enableEmoji = true
-googleAnalytics = {{ getenv "HUGO_GOOGLE_ANALYTICS_ID" | default "" }}
+googleAnalytics = ""
 # We will comment this out for now by adding a '#' at the beginning of the line
 # ...existing code...
 

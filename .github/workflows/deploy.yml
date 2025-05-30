@@ -27,7 +27,7 @@ jobs:
     env:
       HUGO_VERSION: '0.127.0' # MAKE SURE THIS IS YOUR EXACT HUGO VERSION
       NODE_VERSION: '20'    # Node.js version (optional if not strictly needed)
-      HUGO_GOOGLE_ANALYTICS_ID: ${{ secrets.HUGO_GOOGLE_ANALYTICS_ID }} # <-- ADD THIS LINE
+      HUGO_GOOGLEANALYTICS: ${{ secrets.HUGO_GOOGLE_ANALYTICS_ID }} # <-- ADD THIS LINE
     steps:
       - name: Install Hugo CLI
         run: |
