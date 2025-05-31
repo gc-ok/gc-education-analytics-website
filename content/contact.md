@@ -15,7 +15,9 @@ Connect with me on [{{< icon "linkedin" >}} LinkedIn](https://www.linkedin.com/i
 Feel free to email me: [gcastillo@gceducationanalytics.com](mailto:gcastillo@gceducationanalytics.com)
 
 --- 
-Or submit the following form and I will get back to you promptly (do not share any sensitive data or information in the form below as this is a 3rd party form)
+Or submit the following form and I will get back to you promptly. 
+
+Note: This form is hosted by a third-party service (FormSubmit). Please do not include sensitive or confidential information.
 
 <form action="https://formsubmit.co/43385c3b061425e22f953f610f16b8fe" method="POST" class="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow space-y-6">
   <!-- Hidden fields -->
