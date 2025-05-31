@@ -48,7 +48,7 @@ Our work is guided by these fundamental principles:
 
 
 
-The vision for GC Education Analytics LLC stems from a deep-seated belief in the transformative power of education and a firsthand understanding of the challenges educators face. After graduating from Harvard in 2018 and serving with Teach For America in Oklahoma City, I, Gerardo Castillo, have continued my career as a dedicated teacher.
+My name is Gerardo Castillo. The vision for GC Education Analytics LLC stems from a deep-seated belief in the transformative power of education and a firsthand understanding of the challenges educators face. After graduating from Harvard in 2018 and serving with Teach For America in Oklahoma City, I have continued my career as a dedicated teacher.
 
 This immersive experience in the classroom illuminated the significant administrative load and data-related hurdles that can divert energy from the core passion of teaching and connecting with students. It became clear that there was a profound opportunity to leverage technology thoughtfully—to free up educators' time and unlock the true potential within their existing data. My journey began with a simple question: How can we make data work *for* schools, not the other way around?
 
