@@ -49,8 +49,5 @@
 #  pageRef = "/posts/" # Or "/blog/" depending on how Blowfish structures its blog section
 #  weight = 50
 
-# Footer menu (example, if Blowfish supports it - check their docs)
-[[footer]]
-  name = "Privacy Policy"
-  pageRef = "/privacy/"
-  weight = 10
+# ... (your [[main]] menu entries above) ...
+

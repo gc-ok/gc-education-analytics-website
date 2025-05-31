@@ -78,6 +78,7 @@ smartTOCHideUnfocusedChildren = false
   showThemeAttribution = false # Good to keep if using a free theme, or you can set to false
   showAppearanceSwitcher = true
   showScrollToTop = true
+  showSocial = true
 
 [homepage]
   layout = "background" # This means your content/_index.md and its layout file will primarily define the homepage. This is flexible.
