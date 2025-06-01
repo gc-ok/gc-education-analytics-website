@@ -6,6 +6,12 @@ description: "Custom-built software solutions to streamline your school's unique
 # featured_image: "images/services/custom-software-hero.png"
 ---
 
+<!-- Calendly badge widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/gcastillo-gceducationanalytics', text: 'Schedule a meeting', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- Calendly badge widget end -->
+
 {{< katex >}} <div class="text-center">
   {{< figure src="images/software-development.png" alt="Mockup of custom school software" class="mx-auto mb-4 rounded-lg shadow-lg" caption="Software can be coded to your school's needs (Stock Image)" >}}
   </div>

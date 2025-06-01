@@ -5,6 +5,12 @@ draft: false
 description: "Learn about GC Education Analytics LLC: our mission, values, and the founder dedicated to empowering educators with data-driven solutions."
 ---
 
+<!-- Calendly badge widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/gcastillo-gceducationanalytics', text: 'Schedule a meeting', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- Calendly badge widget end -->
+
 # About GC Education Analytics LLC
 
 {{< lead >}}

@@ -9,6 +9,12 @@ hero:
   alt: "GC Education Analytics Logo"
 ---
 
+<!-- Calendly badge widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/gcastillo-gceducationanalytics', text: 'Schedule a meeting', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- Calendly badge widget end -->
+
 <div id="homepage-logo-container" class="text-center">
   {{< figure
     src="images/gceducationlogo.png"

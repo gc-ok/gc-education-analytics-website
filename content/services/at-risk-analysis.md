@@ -6,6 +6,12 @@ description: "Leverage machine learning to predict academic risks, enabling time
 # featured_image: "images/services/at-risk-hero.png" 
 ---
 
+<!-- Calendly badge widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/gcastillo-gceducationanalytics', text: 'Schedule a meeting', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- Calendly badge widget end -->
+
 {{< katex >}} <div class="text-center">
   {{< figure src="images/at-risk-dashboard.png" alt="Predictive At-Risk Student Dashboard" class="mx-auto mb-8 rounded-lg shadow-lg">}}
 </div>
