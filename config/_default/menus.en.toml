@@ -37,12 +37,7 @@
   parent = "Services"
   pageRef = "services/custom-solutions/"
   weight = 35
-
-[[main]]
-  name = "For Teachers (TpT)"
-  pageRef = "/teachers-pay-teachers/"
-  weight = 39
-
+  
 [[main]]
   name = "Contact"
   pageRef = "/contact/" # Link to a 'contact.md' page
