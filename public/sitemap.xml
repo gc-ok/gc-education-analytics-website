@@ -63,6 +63,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>//localhost:1313/student-tracker-example/</loc>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>//localhost:1313/authors/</loc>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
