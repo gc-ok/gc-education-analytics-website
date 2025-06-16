@@ -49,7 +49,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden; /* Prevent body scroll during swipe */
-      font-size: 1.25rem; /* Increased BASE FONT SIZE for MOBILE (20px) */
+      font-size: 1.125rem; /* BASE FONT SIZE for MOBILE (18px) - Using a standard base for better scaling */
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -58,7 +58,7 @@
       width: 100%; /* Full width on mobile */
       height: 100%; /* Full height on mobile */
       margin: 0 auto; /* Centers on desktop, but width:100% overrides on mobile */
-      padding: 0 12px; /* REMOVE ALL CONTAINER PADDING ON MOBILE FOR EDGE-TO-EDGE CARD */
+      padding: 15px; /* MODIFIED: Default container padding for mobile */
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -67,13 +67,14 @@
     header {
       background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
       color: white;
-      padding: 24px 20px; /* Generous internal padding */
+      padding: 24px; /* MODIFIED: Unified padding */
       text-align: center;
       box-shadow: var(--shadow-lg);
       flex-shrink: 0;
       position: relative;
       overflow: hidden;
-      margin: 0; /* REMOVE NEGATIVE MARGINS, HEADER IS NOW FULL WIDTH */
+      margin-bottom: 15px; /* MODIFIED: Added margin to separate from nav */
+      border-radius: var(--radius-md); /* Added for consistency with nav/cards */
     }
     header::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -82,7 +83,7 @@
     }
     h1 {
       margin: 0;
-      font-size: 2.5rem; /* Scaled up from previous 2.2rem */
+      font-size: 2.2rem; /* MODIFIED: Larger for mobile title */
       font-weight: 700;
       letter-spacing: -0.025em;
       text-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -90,22 +91,23 @@
     /* Enhanced navigation */
     nav {
       background: var(--card-background);
-      padding: 16px 20px; /* Generous internal padding */
-      margin: 0 0 12px 0; /* REMOVE MARGIN-BOTTOM, NAV IS NOW FULL WIDTH */
+      padding: 12px; /* MODIFIED: Slightly less padding to make buttons feel larger */
+      margin: 0 0 15px 0; /* MODIFIED: Consistent margin-bottom */
       box-shadow: var(--shadow-sm);
       display: flex;
       justify-content: space-around;
-      gap: 16px;
+      gap: 12px; /* MODIFIED: Smaller gap between buttons */
       flex-shrink: 0;
       border-bottom: 1px solid var(--border-color);
+      border-radius: var(--radius-md); /* Added for rounded corners */
     }
     nav button {
       background: var(--background-color);
       border: 2px solid transparent;
-      padding: 16px 24px; /* Larger padding for better touch targets */
+      padding: 14px 18px; /* MODIFIED: Adjusted padding */
       border-radius: var(--radius-md);
       cursor: pointer;
-      font-size: 2.2rem; /* Scaled up from 1.1rem */
+      font-size: 1.1rem; /* MODIFIED: Scales relative to body font */
       font-weight: 500;
       flex-grow: 1;
       transition: all 0.2s ease;
@@ -133,12 +135,11 @@
     }
     /* Dashboard styling - full screen card container */
     .dashboard-view {
-        /* Keep these for email cards if they still use this view */
         flex-grow: 1;
-        display: flex; /* Keep as flex to manage email or task views */
+        display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0;
+        padding: 0; /* Handled by container */
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -149,20 +150,20 @@
     /* NEW: Container for the task cards */
     .task-grid-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px; /* Space between cards */
-        padding: 20px; /* Padding around the grid */
-        overflow-y: auto; /* Enable vertical scrolling if content overflows */
-        align-content: start; /* Align items to the start of the grid (top) */
-        width: 100%; /* Take full width of its parent */
-        height: 100%; /* Take full height of its parent */
-        box-sizing: border-box; /* Include padding in the width/height */
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* MODIFIED: Slightly smaller min width for more columns on mobile */
+        gap: 15px; /* MODIFIED: Consistent gap */
+        padding: 0; /* Padding will come from .container on mobile */
+        overflow-y: auto;
+        align-content: start;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
     }
 
     .card-wrapper {
-        width: 100%; height: 100%; /* Take full width/height of dashboard-view */
+        width: 100%; height: 100%;
         position: relative; display: flex; justify-content: center; align-items: center;
-        padding: 0; /* NO PADDING ON CARD-WRAPPER FOR EDGE-TO-EDGE CARD */
+        padding: 0;
         box-sizing: border-box;
     }
     /* Enhanced email card with modern design */
@@ -170,12 +171,12 @@
       background: var(--card-background);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-lg);
-      margin: 0; /* NO EXTERNAL MARGINS */
-      padding: 28px; /* GENEROUS INTERNAL PADDING FOR CONTENT READABILITY */
+      margin: 0;
+      padding: 25px; /* MODIFIED: Consistent internal padding */
       overflow: hidden; position: relative; text-align: left;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
-      touch-action: pinch-zoom; cursor: grab;
-      width: 100%; height: 100%; /* FILL CARD-WRAPPER'S INTERNAL SPACE */
+      touch-action: none; cursor: grab; /* Changed back to none as pinch-zoom can interfere with swipe */
+      width: 100%; height: 100%;
       box-sizing: border-box;
       display: flex; flex-direction: column; justify-content: space-between;
       border: 1px solid var(--border-color);
@@ -191,49 +192,56 @@
       box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
     }
     .email-card-header h3 {
-      margin: 0 0 12px 0; color: var(--text-primary);
-      font-size: 2.2rem !important; /* Scaled up from 1.6rem */
+      margin: 0 0 10px 0; /* MODIFIED: Slightly less margin */
+      color: var(--text-primary);
+      font-size: 1.5rem; /* MODIFIED: More reasonable relative size for mobile subject */
       font-weight: 600; line-height: 1.3;
       display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
     .email-card-header p {
-      margin: 0 0 8px 0; font-size: 2rem !important; /* Scaled up from 0.9rem */ color: var(--text-secondary); font-weight: 400;
+      margin: 0 0 6px 0; /* MODIFIED: Slightly less margin */
+      font-size: 0.9rem; /* MODIFIED: From/Date font size */
+      color: var(--text-secondary); font-weight: 400;
       line-height: 1.4;
     }
-    /* BEGIN SNIPPET FONT SIZE AND HEIGHT ADJUSTMENT (Increased specificity with ID to try and win) */
-    #emailCardContainer .email-card-snippet { /* Added '#emailCardContainer' for higher specificity */
-      flex-grow: 1; margin: 16px 0;
-      font-size: 2rem !important; /* VERY SIGNIFICANTLY INCREASED SNIPPET FONT FOR MOBILE (32px on 20px base) */
+    /* SNIPPET FONT SIZE AND HEIGHT ADJUSTMENT - Using high specificity without !important */
+    #emailCardContainer div.email-card > div.email-card-snippet,
+    #emailCardContainer div.email-card > div.email-card-snippet p,
+    #emailCardContainer div.email-card > div.email-card-snippet span,
+    #emailCardContainer div.email-card > div.email-card-snippet div {
+      flex-grow: 1;
+      margin: 15px 0; /* MODIFIED: Consistent margin */
+      font-size: 1.1rem; /* MODIFIED: Clearer font size for mobile snippet (1.1 * 18px = 19.8px) */
       line-height: 1.6;
       color: var(--text-primary);
-      max-height: 300px !important; /* Increased max-height for more snippet visibility on mobile */
+      max-height: 180px; /* MODIFIED: A practical max-height for mobile */
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 10; /* Increased line clamp to allow more lines */
+      -webkit-line-clamp: 7; /* Adjusted line clamp */
       -webkit-box-orient: vertical;
     }
-    /* ENSURE ANY P TAGS OR OTHER TEXT ELEMENTS INSIDE ARE ALSO SCALED */
-    #emailCardContainer .email-card-snippet p,
-    #emailCardContainer .email-card-snippet span,
-    #emailCardContainer .email-card-snippet div {
-        font-size: inherit; /* Ensure children inherit or use this directly */
-    }
-    /* END SNIPPET FONT SIZE AND HEIGHT ADJUSTMENT */
-
     .email-card-meta {
-      font-size: 1rem; /* Scaled up from 0.8rem */ color: var(--text-muted); margin-top: 12px; text-align: right; font-weight: 500;
+      font-size: 0.8rem; /* MODIFIED: Smaller meta info */
+      color: var(--text-muted); margin-top: 10px; /* MODIFIED: Less margin-top */
+      text-align: right; font-weight: 500;
     }
     /* Enhanced button styling */
     .email-card-actions {
-      display: grid; grid-template-columns: 1fr 1fr; /* 2 columns on mobile */ gap: 12px; /* LARGER GAP */
-      margin-top: 20px; max-height: 200px; overflow-y: auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; /* MODIFIED: Smaller gap for buttons */
+      margin-top: 15px; /* MODIFIED: Consistent margin-top */
+      max-height: 120px; /* MODIFIED: Adjusted max-height */
+      overflow-y: auto;
     }
     .email-card-actions button {
       background: var(--background-color); border: 1px solid var(--border-color);
-      padding: 16px 20px; /* Increased padding */ border-radius: var(--radius-sm);
-      cursor: pointer; font-size: 1.8rem; /* Scaled up from 1.1rem */ font-weight: 500; color: var(--text-primary);
+      padding: 12px 15px; /* MODIFIED: Adjusted padding */
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.95rem; /* MODIFIED: Button font size */
+      font-weight: 500; color: var(--text-primary);
       transition: all 0.2s ease; position: relative; overflow: hidden;
-      min-height: 58px; /* Increased min height for touch targets */
+      min-height: 48px; /* MODIFIED: Standard touch target size */
     }
     .email-card-actions button:hover {
       background: var(--primary-color); color: white; border-color: var(--primary-color);
@@ -244,7 +252,7 @@
     /* Swipe Hint Overlays */
     .swipe-hint {
         position: absolute;
-        font-size: 3.5rem; /* Scaled up from 2.8rem */
+        font-size: 3rem; /* MODIFIED: Standardized size for hints */
         font-weight: 700;
         color: white;
         text-shadow: 0 2px 10px rgba(0,0,0,0.8);
@@ -254,118 +262,130 @@
         z-index: 5;
         white-space: nowrap;
         text-align: center;
-        /* Positioned relative to dashboard-view, covers full area for alignment */
         top: 0; left: 0; width: 100%; height: 100%;
-        display: flex; /* Use flexbox for inner centering and alignment */
-        align-items: center; /* Vertically center for horizontal hints */
-        justify-content: center; /* Horizontally center for vertical hints */
-        box-sizing: border-box; /* Include padding in hint dimensions */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
     }
     .swipe-hint.show { opacity: 1; }
     /* Positioning relative to swipe direction (words appear ON THE SIDE OF THE ACTION) */
-    .swipe-hint.left { /* Swipe Left, UNREAD appears on LEFT side of screen */
-        justify-content: flex-start; /* Align text to start */
-        padding-left: 30px; /* Move text in from edge */
+    .swipe-hint.left {
+        justify-content: flex-start;
+        padding-left: 20px; /* MODIFIED: Adjusted padding */
         color: var(--danger-color);
-        background: linear-gradient(90deg, rgba(220,53,69,0.3), transparent); /* Red gradient */
+        background: linear-gradient(90deg, rgba(220,53,69,0.3), transparent);
     }
-    .swipe-hint.right { /* Swipe Right, READ appears on RIGHT side of screen */
-        justify-content: flex-end; /* Align text to end */
-        padding-right: 30px; /* Move text in from edge */
+    .swipe-hint.right {
+        justify-content: flex-end;
+        padding-right: 20px; /* MODIFIED: Adjusted padding */
         color: var(--success-color);
-        background: linear-gradient(270deg, rgba(40,167,69,0.3), transparent); /* Green gradient */
+        background: linear-gradient(270deg, rgba(40,167,69,0.3), transparent);
     }
-    .swipe-hint.up { /* Swipe Up, TRASH appears on TOP of screen */
-        top: 20px; bottom: auto; /* Better positioning with margin */
+    .swipe-hint.up {
+        top: 15px; bottom: auto; /* MODIFIED: Adjusted positioning */
         color: var(--danger-color);
-        background: linear-gradient(180deg, rgba(220,53,69,0.3), transparent); /* Red gradient */
+        background: linear-gradient(180deg, rgba(220,53,69,0.3), transparent);
         border-radius: var(--radius-lg);
-        width: calc(100% - 40px); height: calc(100% - 40px); /* Account for margins */
-        left: 20px;
-        align-items: flex-start; /* Align text to top */
-        padding-top: 30px; /* Move text down */
+        width: calc(100% - 30px); height: calc(100% - 30px); /* MODIFIED: Account for margins */
+        left: 15px;
+        align-items: flex-start;
+        padding-top: 20px; /* MODIFIED: Adjusted padding */
     }
-    .swipe-hint.down { /* Swipe Down, REPLY LATER appears on BOTTOM of screen */
-        bottom: 20px; top: auto; /* Better positioning with margin */
+    .swipe-hint.down {
+        bottom: 15px; top: auto; /* MODIFIED: Adjusted positioning */
         color: var(--warning-color);
-        background: linear-gradient(0deg, rgba(255,193,7,0.3), transparent); /* Orange gradient */
+        background: linear-gradient(0deg, rgba(255,193,7,0.3), transparent);
         border-radius: var(--radius-lg);
-        width: calc(100% - 40px); height: calc(100% - 40px); /* Account for margins */
-        left: 20px;
-        align-items: flex-end; /* Align text to bottom */
-        padding-bottom: 30px; /* Move text up */
+        width: calc(100% - 30px); height: calc(100% - 30px); /* MODIFIED: Account for margins */
+        left: 15px;
+        align-items: flex-end;
+        padding-bottom: 20px; /* MODIFIED: Adjusted padding */
     }
 
     /* Modals */
     .modal {
       display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%;
       overflow: auto; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
-      justify-content: center; align-items: center; padding: 20px; animation: fadeIn 0.2s ease-out;
-      overflow-x: auto;
+      justify-content: center; align-items: center; padding: 15px; /* MODIFIED: Consistent padding */
+      animation: fadeIn 0.2s ease-out;
+      overflow-x: hidden; /* Prevent horizontal scroll on modal itself */
     }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .modal-content {
       background: var(--card-background); margin: auto;
-      padding: 28px; border: none; border-radius: var(--radius-lg);
-      width: 95%; max-width: 700px; max-height: 85vh; display: flex; flex-direction: column;
+      padding: 25px; /* MODIFIED: Consistent padding */
+      border: none; border-radius: var(--radius-lg);
+      width: 90%; max-width: 600px; max-height: 90vh; /* MODIFIED: More max-height for content */
+      display: flex; flex-direction: column;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35); position: relative; animation: slideUp 0.3s ease-out;
-      overflow-x: auto;
+      overflow-x: hidden; /* Prevent horizontal scroll within content */
     }
     @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    .modal-content h2 { margin-top: 0; margin-bottom: 20px; color: var(--text-primary); font-weight: 600; font-size: 1.6rem; } /* Scaled up */
+    .modal-content h2 { margin-top: 0; margin-bottom: 15px; /* MODIFIED: Adjusted margin */
+      color: var(--text-primary); font-weight: 600; font-size: 1.4rem; /* MODIFIED: Adjusted size */
+    }
     .modal-body {
         flex-grow: 1; overflow-y: auto; border: 1px solid var(--border-color);
-        padding: 20px; background: var(--background-color); border-radius: var(--radius-sm);
-        font-size: 1.1rem; /* Scaled up */ line-height: 1.6; margin-bottom: 16px;
+        padding: 15px; /* MODIFIED: Adjusted padding */
+        background: var(--background-color); border-radius: var(--radius-sm);
+        font-size: 0.95rem; /* MODIFIED: Adjusted size */ line-height: 1.6; margin-bottom: 15px; /* MODIFIED: Consistent margin */
     }
     .modal-body.raw-html { white-space: pre-wrap; font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace; }
     .close-button {
-      color: var(--text-muted); float: right; font-size: 38px; /* Scaled up */ font-weight: bold;
-      position: absolute; top: 20px; right: 24px; cursor: pointer; transition: color 0.2s ease;
+      color: var(--text-muted); float: right; font-size: 30px; /* MODIFIED: Adjusted size */ font-weight: bold;
+      position: absolute; top: 15px; right: 20px; /* MODIFIED: Adjusted positioning */
+      cursor: pointer; transition: color 0.2s ease;
     }
     .close-button:hover, .close-button:focus { color: var(--text-primary); text-decoration: none; }
     /* Enhanced form styling */
     .modal-content label {
-      display: block; width: 100%; margin-bottom: 12px; font-weight: 500; color: var(--text-primary); font-size: 1.1rem; /* Scaled up */
+      display: block; width: 100%; margin-bottom: 10px; /* MODIFIED: Less margin */
+      font-weight: 500; color: var(--text-primary); font-size: 0.95rem; /* MODIFIED: Adjusted size */
     }
     .modal-content input, .modal-content textarea, .modal-content select {
-      display: block; width: 100%; margin-bottom: 20px; padding: 18px; /* Increased padding */
-      border: 2px solid var(--border-color); border-radius: var(--radius-sm); font-size: 1.1rem; /* Scaled up */
+      display: block; width: 100%; margin-bottom: 15px; /* MODIFIED: Consistent margin */
+      padding: 12px; /* MODIFIED: Adjusted padding */
+      border: 2px solid var(--border-color); border-radius: var(--radius-sm); font-size: 1rem; /* MODIFIED: Adjusted size */
       transition: border-color 0.2s ease; background: var(--background-color); color: var(--text-primary);
       box-sizing: border-box;
     }
     .modal-content input:focus, .modal-content textarea:focus, .modal-content select:focus {
-      outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+      outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2); /* MODIFIED: Smaller shadow */
     }
     .modal-content button {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white; border: none; padding: 18px 36px; /* Increased padding */ border-radius: var(--radius-sm);
-      cursor: pointer; font-size: 1.1rem; /* Scaled up */ font-weight: 600; margin-top: 16px;
+      color: white; border: none; padding: 14px 28px; /* MODIFIED: Adjusted padding */
+      border-radius: var(--radius-sm);
+      cursor: pointer; font-size: 1rem; /* MODIFIED: Adjusted size */ font-weight: 600; margin-top: 15px; /* MODIFIED: Consistent margin */
       transition: all 0.2s ease; box-shadow: var(--shadow-md);
-      min-height: 52px; /* Increased min-height */
+      min-height: 48px; /* MODIFIED: Standard touch target */
     }
     .modal-content button:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
     .modal-content button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
     /* Enhanced action buttons */
     .full-email-actions {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; padding-top: 20px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; /* MODIFIED: Consistent gap */
+      margin-top: 15px; padding-top: 15px; /* MODIFIED: Consistent margin/padding */
       border-top: 1px solid var(--border-color);
     }
     .full-email-actions button {
       background: var(--background-color); color: var(--text-primary); border: 1px solid var(--border-color);
-      padding: 16px 20px; /* Increased padding */ border-radius: var(--radius-sm); cursor: pointer;
-      font-size: 1.8rem !important; /* Scaled up */ font-weight: 500; margin-top: 0; transition: all 0.2s ease;
-      min-height: 52px; /* Increased min-height */
+      padding: 12px 15px; /* MODIFIED: Adjusted padding */ border-radius: var(--radius-sm); cursor: pointer;
+      font-size: 0.95rem; /* MODIFIED: Adjusted size */ font-weight: 500; margin-top: 0; transition: all 0.2s ease;
+      min-height: 48px; /* MODIFIED: Standard touch target */
     }
     .full-email-actions button:hover {
       background: var(--primary-color); color: white; border-color: var(--primary-color);
     }
     /* Enhanced snackbar */
     #snackbar {
-      visibility: hidden; min-width: 300px; margin-left: -150px; background: var(--card-background);
+      visibility: hidden; min-width: 280px; /* MODIFIED: Slightly smaller width */
+      margin-left: -140px; /* Half of new width */
+      background: var(--card-background);
       color: var(--text-primary); text-align: center; border-radius: var(--radius-md);
-      padding: 22px; /* Increased padding */ position: fixed; z-index: 101; left: 50%; bottom: 50px;
-      font-size: 1.1rem; /* Scaled up */ font-weight: 500; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);
+      padding: 18px; /* MODIFIED: Adjusted padding */ position: fixed; z-index: 101; left: 50%; bottom: 30px; /* MODIFIED: Higher up from bottom */
+      font-size: 0.95rem; /* MODIFIED: Adjusted size */ font-weight: 500; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);
     }
     #snackbar.show {
       visibility: visible;
@@ -374,29 +394,28 @@
     }
     #snackbar button {
         background: var(--success-color); color: white; border: none;
-        padding: 14px 22px; /* Increased padding */ margin-left: 16px; cursor: pointer; border-radius: var(--radius-sm); font-weight: 500;
-        transition: background 0.2s ease; min-height: 44px; /* Increased min-height */
+        padding: 10px 18px; /* MODIFIED: Adjusted padding */ margin-left: 12px; /* MODIFIED: Adjusted margin */
+        cursor: pointer; border-radius: var(--radius-sm); font-weight: 500;
+        transition: background 0.2s ease; min-height: 40px; /* MODIFIED: Adjusted min-height */
     }
     #snackbar button:hover { background: #38a169; }
-    @keyframes snackbarFadeIn { from { bottom: 0; opacity: 0; transform: scale(0.8); } to { bottom: 50px; opacity: 1; transform: scale(1); } }
-    @keyframes snackbarFadeOut { from { bottom: 50px; opacity: 1; transform: scale(1); } to { bottom: 0; opacity: 0; transform: scale(0.8); } }
+    @keyframes snackbarFadeIn { from { bottom: 0; opacity: 0; transform: scale(0.8); } to { bottom: 30px; opacity: 1; transform: scale(1); } } /* MODIFIED: Adjusted bottom */
+    @keyframes snackbarFadeOut { from { bottom: 30px; opacity: 1; transform: scale(1); } to { bottom: 0; opacity: 0; transform: scale(0.8); } } /* MODIFIED: Adjusted bottom */
 
     /* Task card styling - apply adjustments for grid */
     .task-card {
         background: var(--card-background);
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-sm);
-        padding: 28px; /* Increased padding */
-        /* Remove margin-bottom as gap handles spacing now */
-        margin-bottom: 0;
+        padding: 20px; /* MODIFIED: Consistent padding */
+        margin-bottom: 0; /* Gap handles spacing now */
         border: 1px solid var(--border-color);
         transition: box-shadow 0.2s ease;
-        /* Ensure cards fill grid cell */
         width: 100%;
-        height: auto; /* Let height adjust to content */
+        height: auto;
         display: flex;
         flex-direction: column;
-        overflow-x: auto;
+        overflow-x: hidden;
     }
 
     .task-card:hover {
@@ -404,34 +423,34 @@
     }
     .task-card-header h3 {
         color: var(--text-primary);
-        font-size: 2.4rem !important; /* Scaled up from 1.25rem */
+        font-size: 1.2rem; /* MODIFIED: Adjusted size */
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 10px; /* MODIFIED: Adjusted margin */
     }
     .task-card-details p {
-        margin: 0 0 8px 0;
-        font-size: 2.2rem !important; /* Scaled up from 0.9rem */
+        margin: 0 0 6px 0; /* MODIFIED: Adjusted margin */
+        font-size: 0.95rem; /* MODIFIED: Adjusted size */
         color: var(--text-secondary);
     }
     .task-card-actions {
         display: flex;
-        gap: 12px;
-        margin-top: auto; /* Push actions to the bottom of the card */
-        padding-top: 10px; /* Small padding above buttons */
-        border-top: 1px solid var(--border-color); /* Separator for actions */
-        flex-wrap: wrap; /* Allow buttons to wrap if too many */
-        justify-content: flex-end; /* Align buttons to the right */
+        gap: 10px; /* MODIFIED: Consistent gap */
+        margin-top: auto;
+        padding-top: 10px;
+        border-top: 1px solid var(--border-color);
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
     .task-card-actions button {
         background: var(--background-color);
         border: 1px solid var(--border-color);
-        padding: 14px 22px; /* Increased padding */
+        padding: 12px 18px; /* MODIFIED: Adjusted padding */
         border-radius: var(--radius-sm);
         cursor: pointer;
-        font-size: 2rem !important; /* Scaled up from 0.9rem */
+        font-size: 0.9rem; /* MODIFIED: Adjusted size */
         font-weight: 500;
         transition: all 0.2s ease;
-        min-height: 48px; /* Increased min-height */
+        min-height: 44px; /* MODIFIED: Adjusted min-height */
     }
     .task-card-actions button.done {
         background: var(--success-color);
@@ -452,96 +471,175 @@
     #loadingEmails,
     #loadingTasks {
         color: var(--text-secondary);
-        font-size: 4rem; /* Scaled up from 1.5rem */
+        font-size: 1.8rem; /* MODIFIED: Adjusted size */
         font-weight: 500;
         padding: 20px;
     }
 
     /* Responsive design for larger screens (min-width: 600px) */
     @media (min-width: 600px) {
-      body { font-size: 1.05rem; } /* Adjusted base font size for desktop (16.8px) - slightly larger than 1rem */
-      .container { padding: 20px; } /* Add padding for wider screens */
-      nav { border-radius: var(--radius-md); margin-bottom: 16px; } /* Restore rounded corners */
-      .email-card { padding: 24px; } /* Adjust padding for desktop */
-      .email-card-header h3 { font-size: 1.5rem; } /* Adjusted for desktop */
-      /* BEGIN DESKTOP SNIPPET FONT SIZE AND HEIGHT ADJUSTMENT */
-      #emailCardContainer .email-card-snippet { font-size: 1.1rem; max-height: 150px; -webkit-line-clamp: 6; } /* Adjusted for desktop */
-      #emailCardContainer .email-card-snippet p,
-      #emailCardContainer .email-card-snippet span,
-      #emailCardContainer .email-card-snippet div {
-          font-size: inherit;
+      body { font-size: 1rem; } /* MODIFIED: Base font size for desktop (16px) */
+      .container { padding: 20px; } /* MODIFIED: Standard desktop padding */
+      header { border-radius: var(--radius-md); } /* Re-add rounded corners for desktop */
+      nav { border-radius: var(--radius-md); margin-bottom: 20px; /* MODIFIED: More separation */ }
+      
+      h1 { font-size: 2.5rem; } /* MODIFIED: Adjusted for desktop */
+      nav button { font-size: 1rem; } /* MODIFIED: Smaller on desktop */
+
+      .email-card { padding: 20px; } /* MODIFIED: Adjusted for desktop */
+      .email-card-header h3 { font-size: 1.25rem; } /* MODIFIED: Subject for desktop */
+      /* DESKTOP SNIPPET - Using high specificity without !important */
+      #emailCardContainer div.email-card > div.email-card-snippet,
+      #emailCardContainer div.email-card > div.email-card-snippet p,
+      #emailCardContainer div.email-card > div.email-card-snippet span,
+      #emailCardContainer div.email-card > div.email-card-snippet div {
+        font-size: 0.95rem; /* MODIFIED: Smaller on desktop (approx 15.2px) */
+        max-height: 120px; /* MODIFIED: Adjusted max-height for desktop */
+        -webkit-line-clamp: 6; /* Adjusted line clamp */
       }
-      /* END DESKTOP SNIPPET FONT SIZE AND HEIGHT ADJUSTMENT */
-      .email-card-meta { font-size: 0.85rem; } /* Adjusted meta font size for desktop */
-      .email-card-actions { grid-template-columns: repeat(3, 1fr); gap: 12px; } /* 3 columns on tablet */
-      .full-email-actions { grid-template-columns: repeat(3, 1fr); }
-      .swipe-hint { font-size: 3rem; } /* Adjusted hint size for desktop */
+      .email-card-header p { font-size: 0.85rem; } /* MODIFIED: Adjusted from/date */
+      .email-card-meta { font-size: 0.75rem; } /* MODIFIED: Adjusted meta */
+      .email-card-actions { grid-template-columns: repeat(3, 1fr); gap: 10px; } /* 3 columns on tablet/small desktop */
+      .email-card-actions button { font-size: 0.85rem; } /* MODIFIED: Smaller on desktop */
+
+      .full-email-actions { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .full-email-actions button { font-size: 0.95rem; } /* MODIFIED: Adjusted size */
+
+      .swipe-hint { font-size: 2.5rem; } /* MODIFIED: Smaller hint size for desktop */
       /* Better positioning for larger screens */
-      .swipe-hint.left { left: 40px; width: calc(100% - 80px); }
-      .swipe-hint.right { right: 40px; width: calc(100% - 80px); }
-      .swipe-hint.up { top: 40px; width: calc(100% - 80px); height: calc(100% - 80px); left: 40px; }
-      .swipe-hint.down { bottom: 40px; width: calc(100% - 80px); height: calc(100% - 80px); left: 40px; }
+      .swipe-hint.left { padding-left: 40px; }
+      .swipe-hint.right { padding-right: 40px; }
+      .swipe-hint.up { top: 30px; left: 30px; width: calc(100% - 60px); height: calc(100% - 60px); padding-top: 30px; }
+      .swipe-hint.down { bottom: 30px; left: 30px; width: calc(100% - 60px); height: calc(100% - 60px); padding-bottom: 30px; }
 
-      /* Desktop adjustments for modal and form fonts */
-      .modal-content h2 { font-size: 1.8rem; }
-      .modal-body { font-size: 1rem; }
-      .modal-content label { font-size: 1rem; }
-      .modal-content input, .modal-content textarea, .modal-content select { font-size: 1rem; }
-      .modal-content button { font-size: 1.1rem; }
-      .full-email-actions button { font-size: 1rem; }
-      #snackbar { font-size: 1rem; }
 
-      /* Desktop adjustments for task cards */
-      .task-card-header h3 { font-size: 1.3rem; }
-      .task-card-details p { font-size: 0.95rem; }
-      .task-card-actions button { font-size: 0.95rem; }
+      /* MODAL adjustments for desktop */
+      .modal-content {
+        padding: 25px;
+        max-width: 700px; /* MODIFIED: Increased max-width */
+      }
+      .modal-content h2 { font-size: 1.5rem; }
+      .modal-body { font-size: 0.9rem; }
+      .modal-content label { font-size: 0.9rem; }
+      .modal-content input, .modal-content textarea, .modal-content select { font-size: 0.95rem; padding: 10px; }
+      .modal-content button { font-size: 1rem; padding: 12px 24px; min-height: 44px; }
+      .close-button { font-size: 28px; top: 15px; right: 20px; }
+      #snackbar { font-size: 0.9rem; bottom: 30px; }
+
+      /* Task card adjustments for desktop */
+      .task-card { padding: 20px; }
+      .task-card-header h3 { font-size: 1.1rem; }
+      .task-card-details p { font-size: 0.9rem; }
+      .task-card-actions button { font-size: 0.8rem; }
+      #loadingEmails, #loadingTasks { font-size: 1.5rem; }
     }
 
     /* NEW: Media Query for Larger Desktops / Laptops / Large Tablets (e.g., iPad Pro landscape) */
     /* This media query covers from 1024px wide screens and up */
     @media (min-width: 1024px) {
       body {
-        font-size: 1.0rem;
+        font-size: 1rem; /* Base font is 16px */
       }
       .container {
-        max-width: 1200px;
-        padding: 40px;
+        max-width: 1100px; /* MODIFIED: Wider container for large screens */
+        padding: 30px; /* MODIFIED: More padding for larger screens */
       }
 
       /* HEADER ADJUSTMENTS for 1024px+ */
       header {
-        padding: 24px 20px; /* Can go back to original generous padding for large screens */
+        padding: 30px 40px; /* MODIFIED: More generous header padding */
+        margin-bottom: 25px; /* MODIFIED: More separation */
       }
       header h1 {
-        font-size: 3.0rem; /* Re-adjust header font for large screens */
+        font-size: 3.2rem; /* MODIFIED: Larger header font for large screens */
       }
 
       /* FOOTER ADJUSTMENTS for 1024px+ */
       footer {
-        padding: 15px 20px; /* Can go back to original padding */
-        font-size: 1.05rem; /* Slightly larger for large screens */
+        padding: 20px 30px; /* MODIFIED: More footer padding */
+        font-size: 0.9rem; /* MODIFIED: Adjusted for large screens */
       }
 
       nav button {
-        font-size: 1.3rem;
+        font-size: 1.05rem; /* MODIFIED: Slightly larger nav buttons */
+        padding: 16px 20px; /* MODIFIED: More padding */
+      }
+
+      .email-card {
+        padding: 30px; /* MODIFIED: More card padding */
       }
       .email-card-header h3 {
-        font-size: 1.8rem !important;
+        font-size: 1.6rem; /* MODIFIED: Larger subject for large screens */
+        margin-bottom: 12px;
       }
-      #emailCardContainer .email-card-snippet {
-        font-size: 1.1rem !important;
-        max-height: 200px !important;
+      /* SNIPPET FOR LARGE DESKTOP */
+      #emailCardContainer div.email-card > div.email-card-snippet,
+      #emailCardContainer div.email-card > div.email-card-snippet p,
+      #emailCardContainer div.email-card > div.email-card-snippet span,
+      #emailCardContainer div.email-card > div.email-card-snippet div {
+        font-size: 1.05rem; /* MODIFIED: Slightly larger snippet for large screens */
+        max-height: 180px; /* MODIFIED: More height for snippet */
         -webkit-line-clamp: 8;
+        margin: 20px 0; /* MODIFIED: More margin */
       }
-      .email-card-header p,
-      .email-card-details p {
-        font-size: 0.95rem !important;
+      .email-card-header p {
+        font-size: 0.95rem; /* MODIFIED: Larger from/date */
       }
+      .email-card-meta {
+        font-size: 0.8rem; /* MODIFIED: Larger meta */
+      }
+      .email-card-actions {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on large desktop */
+        gap: 15px; /* MODIFIED: Larger gap */
+        margin-top: 25px; /* MODIFIED: More margin */
+      }
+      .email-card-actions button {
+        font-size: 0.95rem; /* MODIFIED: Larger buttons */
+        padding: 14px 20px; /* MODIFIED: More padding */
+      }
+
       .task-grid-container {
-        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* MODIFIED: Larger min-width for task cards */
+        gap: 25px; /* MODIFIED: Larger gap */
+        padding: 20px; /* MODIFIED: More padding */
+      }
+      .task-card {
+        padding: 25px; /* MODIFIED: More task card padding */
+      }
+      .task-card-header h3 {
+        font-size: 1.3rem; /* MODIFIED: Larger task header */
+      }
+      .task-card-details p {
+        font-size: 1rem; /* MODIFIED: Larger task details */
+      }
+      .task-card-actions button {
+        font-size: 0.9rem; /* MODIFIED: Larger task buttons */
+      }
+
+      /* Modal adjustments for 1024px+ */
+      .modal-content {
+        max-width: 800px;
+        padding: 35px;
+      }
+      .modal-content h2 { font-size: 1.8rem; }
+      .modal-body { font-size: 1.05rem; }
+      .modal-content label { font-size: 1rem; }
+      .modal-content input, .modal-content textarea, .modal-content select { font-size: 1.05rem; padding: 14px; }
+      .modal-content button { font-size: 1.15rem; padding: 16px 32px; min-height: 52px; }
+      .full-email-actions button { font-size: 1.05rem; }
+      #snackbar { font-size: 1rem; }
+    }
+
+    /* Final rule for very large desktops, if needed - adjust body font slightly */
+    @media (min-width: 1440px) {
+      body {
+        font-size: 1.025rem; /* A tiny bit larger base font for very large screens */
+      }
+      .container {
+        max-width: 1400px; /* Even wider container */
       }
     }
+
   </style>
 </head>
 <body>
@@ -556,9 +654,9 @@
     </nav>
 
     <div id="emailDashboard" class="dashboard-view">
-      <div id="swipeHintLeft" class="swipe-hint left">LEAVE AS UNREAD</div>
-      <div id="swipeHintRight" class="swipe-hint right">MARK AS READ</div>
-      <div id="swipeHintUp" class="swipe-hint up">MOVE TO TRASH</div>
+      <div id="swipeHintLeft" class="swipe-hint left">UNREAD</div>
+      <div id="swipeHintRight" class="swipe-hint right">READ</div>
+      <div id="swipeHintUp" class="swipe-hint up">TRASH</div>
       <div id="swipeHintDown" class="swipe-hint down">REPLY LATER</div>
 
       <div id="emailCardContainer" class="card-wrapper">
@@ -578,7 +676,7 @@
         <h2>Email Summary</h2>
         <div id="summaryText" class="modal-body">Loading summary...</div>
         <button id="generateSummaryBtn">Generate Summary (AI)</button>
-        <p style="font-size: 0.8em; color: #777;">Note: Free AI summary limit applies (e.g., 10/month).</p>
+        <p style="font-size: 0.85em; color: #777;">Note: Free AI summary limit applies (e.g., 10/month).</p>
       </div>
     </div>
 
@@ -661,7 +759,7 @@
     color: var(--text-muted);
     text-align: center;
     padding: 15px 20px;
-    font-size: 1.4rem;
+    font-size: 0.8rem; /* MODIFIED: Adjusted footer font */
     border-top: 1px solid var(--border-color);
     flex-shrink: 0; /* Prevents footer from shrinking */
     margin-top: auto; /* Pushes footer to the bottom if content is short */
