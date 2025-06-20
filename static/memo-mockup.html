@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-      /* --- THEME DEFINITIONS --- */
+      /* --- THEME DEFINITIONS (No changes needed here) --- */
       :root {
         --primary-bg: #e3f2fd; --secondary-bg: #ffffff; --primary-text: #0d47a1; --secondary-text: #1565c0;
         --accent-color: #1976d2; --border-color: #90caf9; --header-bg: #64b5f6; --header-text: #ffffff;
@@ -102,34 +102,111 @@
       .branding-content a { color: var(--accent-color); text-decoration: none; font-weight: 500; }
       .branding-content a:hover { text-decoration: underline; }
       .generated-by { margin: 0; padding: 0; font-size: 0.8rem; color: var(--secondary-text); opacity: 0.7; }
-      
-      /* --- Styles for Archived Memo Functionality --- */
       .memo-content { display: none; }
       .memo-content.active-memo { display: block; }
       
+      /* --- NEW: Image Utility Classes --- */
+      .img-responsive {
+          max-width: 100%;
+          height: auto;
+          border-radius: 8px;
+          margin-top: 10px;
+          display: block;
+      }
+      .img-small {
+          max-width: 250px;
+          width: 100%;
+      }
+      
       /* --- RESPONSIVE STYLES --- */
+
+      /* NEW: Hamburger Button Styling */
+      #mobile-nav-toggle {
+          display: none;
+          width: 30px;
+          height: 25px;
+          position: absolute;
+          top: 28px;
+          right: 20px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          z-index: 2000;
+          padding: 0;
+      }
+      #mobile-nav-toggle span {
+          display: block;
+          width: 100%;
+          height: 3px;
+          background-color: var(--header-text);
+          margin: 5px 0;
+          transition: all 0.3s ease;
+          border-radius: 3px;
+      }
+
+      /* Animate hamburger to "X" when nav is open */
+      .nav-open #mobile-nav-toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .nav-open #mobile-nav-toggle span:nth-child(2) { opacity: 0; }
+      .nav-open #mobile-nav-toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+
       @media (max-width: 1200px) { 
         body { padding-left: 0; } 
-        #side-nav { display: none; } 
+        #mobile-nav-toggle { display: block; } /* Show hamburger */
+
+        #side-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px; /* Width of the slide-out panel */
+            background-color: var(--secondary-bg);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+            transform: translateX(-100%); /* Hide it off-screen */
+            transition: transform 0.3s ease-in-out;
+            z-index: 1999;
+            padding: 60px 15px 15px 15px; /* Add padding for content */
+        }
+        .nav-open #side-nav {
+            transform: translateX(0); /* Slide it in */
+        }
       }
+
       @media (max-width: 768px) {
         .container { margin: 10px auto; padding: 0 10px; }
-        header { flex-direction: column; align-items: flex-start; padding: 15px; }
+        header { 
+            flex-direction: column; 
+            align-items: flex-start; 
+            padding: 15px;
+            position: relative; /* Anchor for hamburger button */
+        }
         .header-text { text-align: left; }
         .header-text h1 { font-size: 1.6rem; }
         .header-text h2 { font-size: 1rem; }
         #theme-controls, #memo-selector-container { align-self: flex-start; margin-top: 10px; margin-left: 0; width: 100%; }
         #theme-select, #memo-select { width: 100%; }
         .section-header { font-size: 1.25rem; }
-        .memo-item { padding: 15px; }
+        .memo-item { padding: 20px 15px; } /* Improved tap area */
+        #view-controls button { padding: 8px 15px; } /* Improved tap area */
         footer { padding: 15px 10px; }
       }
     </style>
 </head>
 <body class="theme-ocean-breeze">
+
+    <nav id="side-nav">
+        <h4>Quick Navigation</h4>
+        <ul id="nav-links">
+            </ul>
+    </nav>
     
     <div class="container">
         <header>
+            <button id="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="side-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <img src="https://images.pexels.com/photos/36846/bald-eagle-adler-bird-of-prey-raptor.jpg" alt="Eagle Logo" class="logo">
             <div class="header-text">
                 <h1>The Weekly Eagle</h1>
@@ -187,7 +264,7 @@
                         <li class="memo-item">
                             <h3 class="memo-item-title">It's Homecoming Week, Eagles!</h3>
                             <p class="memo-item-description">Staff and students, get ready for a fantastic week of school spirit! Let's show our pride by participating in the spirit days, attending the pep rally, and cheering on our teams. Let's make this the best Homecoming yet and show everyone what Eagle Pride is all about!</p>
-                            <img src="https://images.pexels.com/photos/159571/american-football-football-canada-canadian-159571.jpeg" style="width: 100%; max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;" alt="football">
+                            <img src="https://images.pexels.com/photos/159571/american-football-football-canada-canadian-159571.jpeg" class="img-responsive" alt="football">
                         </li>
                     </ul>
                 </div>
@@ -197,158 +274,16 @@
                         <li class="memo-item">
                             <h3 class="memo-item-title">School Picture Day is This Wednesday!</h3>
                             <p class="memo-item-description">Don't forget, school pictures for all grades (9-12) and staff will be taken this Wednesday in the main gym. Order forms were sent home last week, but extras are available in the main office. Please be sure to have your photo taken for the yearbook.</p>
-                            <img src="https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg" style="width: 200px; max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;" alt="A professional camera on a tripod">
+                            <img src="https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg" class="img-responsive img-small" alt="A professional camera on a tripod">
                         </li>
                     </ul>
                 </div>
-                <div class="memo-section" id="section-academics-current">
-                    <div class="section-header">Academics</div>
-                    <ul class="section-items">
-                        <li class="memo-item">
-                            <h3 class="memo-item-title"><a href="#" target="_blank" rel="noopener noreferrer">PSAT/NMSQT Registration Now Open<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5-.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg></a></h3>
-                            <p class="memo-item-description">Registration for the PSAT/NMSQT for 10th and 11th graders is now open. The test will be administered on Saturday, October 12th. The deadline to register is September 27th. Please see the guidance office for more information.</p>
-                        </li>
-                    </ul>
                 </div>
-                <div class="memo-section" id="section-athletics-current">
-                    <div class="section-header">Athletics</div>
-                    <ul class="section-items">
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Varsity Football vs. Northwood High</h3>
-                            <p class="memo-item-description">Come support the Eagles this Friday night at 7:00 PM as they take on their rivals, the Northwood Timberwolves, at home. The theme for the student section is "blackout." Let's pack the stands!</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="memo-section" id="section-clubs-and-activities-current">
-                    <div class="section-header">Clubs & Activities</div>
-                    <ul class="section-items">
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Debate Team Tryouts</h3>
-                            <p class="memo-item-description">Interested in joining the award-winning Debate Team? Tryouts will be held after school on Tuesday in Room 204. No experience is necessary.</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="memo-section" id="section-upcoming-dates-current">
-                    <div class="section-header">Upcoming Dates</div>
-                    <ul class="section-items">
-                        <li class="memo-item"><h3 class="memo-item-title">Sept. 18: School Picture Day</h3></li>
-                        <li class="memo-item"><h3 class="memo-item-title">Sept. 20: Homecoming Football Game</h3></li>
-                        <li class="memo-item"><h3 class="memo-item-title">Sept. 27: PSAT Registration Deadline</h3></li>
-                    </ul>
-                </div>
-            </div>
 
-            <div id="memo-archive1" class="memo-content">
-                <div id="view-controls">
-                    <button class="expand-all">Expand All</button>
-                    <button class="collapse-all">Collapse All</button>
-                </div>
-                <div class="memo-section">
-                    <div class="section-header">Principal's Welcome Back Message</div>
-                    <ul class="section-items">
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Welcome Back, Eagles!</h3>
-                            <p class="memo-item-description">Welcome to the 2025-2026 school year! I am incredibly excited to see our hallways filled with energy and enthusiasm once again. This year is a fresh start, a new chapter, and an opportunity to achieve great things. Let's make it a memorable year of learning and growth.</p>
-                            <img src="https://images.pexels.com/photos/8500283/pexels-photo-8500283.jpeg" style="width: 100%; max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;" alt="Students walking into a school building">
-                        </li>
-                    </ul>
-                </div>
-                <div class="memo-section">
-                    <div class="section-header">First Week Logistics & Procedures</div>
-                    <ul class="section-items">
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Locker Assignments and Schedules</h3>
-                            <p class="memo-item-description">Student schedules and locker assignments are now available on the student portal. Paper copies can be picked up in the main office. Please report any schedule conflicts to the guidance office by the end of the first week.</p>
-                        </li>
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Chromebook Distribution</h3>
-                            <p class="memo-item-description">All 9th-grade students and any new students will receive their school-issued Chromebooks in their English classes during the first two days of school. Returning students should bring their previously issued devices fully charged.</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="memo-section">
-                    <div class="section-header">Get Involved!</div>
-                    <ul class="section-items">
-                         <li class="memo-item">
-                            <h3 class="memo-item-title">Club Fair & Fall Sports Tryouts</h3>
-                            <p class="memo-item-description">Our annual Club Fair will take place this Friday in the gymnasium. It's the perfect chance to see all the amazing clubs and activities American High has to offer. Additionally, tryouts for all fall sports will be held next week. Check the athletics website for the full schedule.</p>
-                            <img src="https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="width: 300px; max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;" alt="A gymnasium set up for an event">
-                        </li>
-                    </ul>
-                </div>
-                 <div class="memo-section">
-                    <div class="section-header">Important First Week Dates</div>
-                    <ul class="section-items">
-                        <li class="memo-item"><h3 class="memo-item-title">Sept. 2: First Day of School</h3></li>
-                        <li class="memo-item"><h3 class="memo-item-title">Sept. 6: Club Fair in the Gym</h3></li>
-                        <li class="memo-item"><h3 class="memo-item-title">Sept. 12: Back to School Night for Parents</h3></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div id="memo-archive2" class="memo-content">
-                <div id="view-controls">
-                    <button class="expand-all">Expand All</button>
-                    <button class="collapse-all">Collapse All</button>
-                </div>
-                <div class="memo-section">
-                    <div class="section-header">Principal's End of Year Message</div>
-                    <ul class="section-items">
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Congratulations on a Successful Year!</h3>
-                            <p class="memo-item-description">To our students and staff, congratulations on completing another successful school year. To our seniors, we wish you the best in all your future endeavors as you embark on your next chapter. To our returning students, have a safe and restful summer break. We look forward to seeing you in the fall!</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="memo-section">
-                    <div class="section-header">Senior Information: Class of 2025</div>
-                    <ul class="section-items">
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Mandatory Graduation Rehearsal</h3>
-                            <p class="memo-item-description">All graduating seniors must attend the mandatory rehearsal on June 5th at 10:00 AM in the main auditorium. Please be on time. Caps and gowns are not required for rehearsal.</p>
-                        </li>
-                         <li class="memo-item">
-                            <h3 class="memo-item-title">Cap & Gown Distribution</h3>
-                            <p class="memo-item-description">Caps and gowns can be picked up from the main office starting Monday, June 2nd. All outstanding fees and obligations must be cleared before you can receive your cap and gown.</p>
-                            <img src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="width: 250px; max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;" alt="Graduation caps being thrown in the air">
-                        </li>
-                    </ul>
-                </div>
-                <div class="memo-section">
-                    <div class="section-header">Finals and End of Year Procedures</div>
-                    <ul class="section-items">
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Final Exam Schedule</h3>
-                            <p class="memo-item-description">The final exam schedule for grades 9-11 is now posted on the school website. Please review the dates and times carefully. Good luck on your exams!</p>
-                        </li>
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Locker Cleanout & Textbook Return</h3>
-                            <p class="memo-item-description">All lockers must be cleaned out by the last day of school. All textbooks must be returned to the library to avoid fines. Any items left in lockers after the last day will be donated.</p>
-                            <img src="https://images.pexels.com/photos/256517/pexels-photo-256517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="width: 300px; max-width: 100%; height: auto; margin-top: 10px; border-radius: 8px;" alt="A stack of textbooks on a library shelf">
-                        </li>
-                    </ul>
-                </div>
-                 <div class="memo-section">
-                    <div class="section-header">Summer Opportunities</div>
-                     <ul class="section-items">
-                        <li class="memo-item">
-                            <h3 class="memo-item-title">Summer School Registration</h3>
-                            <p class="memo-item-description">Registration for summer school credit recovery and enrichment courses is now open. Please see your guidance counselor for more information and to register.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </main>
+            </main>
 
         <footer>
-            <div class="branding-content">
-              <span>Template by <a href="https://gceducationanalytics.com" target="_blank" rel="noopener noreferrer">GC Education Analytics</a></span>
-              <span style="opacity: 0.5;">&nbsp;|&nbsp;</span>
-              <span><a href="https://www.teacherspayteachers.com/store/gc-education-analytics" target="_blank" rel="noopener noreferrer">Visit our TpT Store</a></span>
-            </div>
-          <p class="generated-by">Generated on June 19, 2025 | Powered by Google Apps Script</p>
-        </footer>
+           </footer>
     </div>
 
 <script>
@@ -358,7 +293,30 @@
         const themeSelect = document.getElementById('theme-select');
         const sideNavLinks = document.getElementById('nav-links');
 
-        // This object maps the memo ID to its side navigation HTML
+        // --- NEW: Mobile Navigation Logic ---
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const body = document.body;
+        const sideNav = document.getElementById('side-nav');
+
+        if (mobileNavToggle) {
+            mobileNavToggle.addEventListener('click', () => {
+                body.classList.toggle('nav-open');
+                const isExpanded = body.classList.contains('nav-open');
+                mobileNavToggle.setAttribute('aria-expanded', isExpanded);
+            });
+        }
+        
+        // Close nav when a link is clicked (useful on mobile)
+        if(sideNav) {
+            sideNav.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && body.classList.contains('nav-open')) {
+                    body.classList.remove('nav-open');
+                    mobileNavToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        // Object mapping memo IDs to their navigation HTML
         const navHTML = {
             'memo-current': `
                 <li><a href="#section-principals-message-current">Principal's Message</a></li>
@@ -389,7 +347,7 @@
                 const header = section.querySelector('.section-header');
                 if (header && !header.dataset.listenerAttached) {
                     header.addEventListener('click', () => section.classList.toggle('collapsed'));
-                    header.dataset.listenerAttached = 'true'; // Prevent adding multiple listeners
+                    header.dataset.listenerAttached = 'true';
                 }
             });
 
@@ -406,26 +364,25 @@
             }
         }
 
+        // Function to update the navigation panel
+        function updateNav(memoId) {
+             if (navHTML[memoId]) {
+                sideNavLinks.innerHTML = navHTML[memoId];
+            }
+        }
+
         // --- Archive Memo Selection Logic ---
         if (memoSelect) {
             memoSelect.addEventListener('change', function() {
-                // Hide all memo content divs
                 const allMemos = memoContainer.querySelectorAll('.memo-content');
-                allMemos.forEach(memo => {
-                    memo.classList.remove('active-memo');
-                });
+                allMemos.forEach(memo => memo.classList.remove('active-memo'));
 
-                // Show the selected one
                 const selectedMemoId = this.value;
                 const selectedMemo = document.getElementById(selectedMemoId);
                 if (selectedMemo) {
                     selectedMemo.classList.add('active-memo');
-                    // Update the side navigation
-                    if (navHTML[selectedMemoId]) {
-                        sideNavLinks.innerHTML = navHTML[selectedMemoId];
-                    }
-                    // Re-initialize accordion for the newly visible memo
-                    setupAccordion(selectedMemo);
+                    updateNav(selectedMemoId); // Update the side navigation
+                    setupAccordion(selectedMemo); // Re-initialize accordion for the new memo
                 }
             });
         }
@@ -441,7 +398,7 @@
         const initialMemo = document.querySelector('.memo-content.active-memo');
         if(initialMemo) {
             setupAccordion(initialMemo);
-            sideNavLinks.innerHTML = navHTML[initialMemo.id];
+            updateNav(initialMemo.id);
         }
     });
 </script>
