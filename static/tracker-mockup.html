@@ -251,6 +251,8 @@
       #mainControls > div { width: 100%; margin-bottom: 5px; }
       #mainControls select { width: calc(100% - 100px); }
     }
+    
+    /***** START: MOBILE VIEW EDITS *****/
     @media (max-width: 480px) {
       body { padding: 5px; font-size: 0.95rem; }
       .container { width: 100%; padding: 10px; border-radius: 0; box-shadow: none; }
@@ -272,10 +274,36 @@
       .fill-all-container { display: flex; flex-direction: column; align-items: flex-start; }
       .fill-all-container select, .fill-all-container button { width: auto; }
       .fill-all-container button { margin-top: 5px; }
-      .participation-cell button { min-width: 28px; padding: 5px 6px; font-size: 0.85em; }
-      .participation-cell button.checkmark-style { font-size: 1em; min-width: 35px; }
+      
+      .participation-cell {
+          padding: 5px; /* Give a little space */
+      }
+      /* This is the new container for the buttons */
+      .participation-button-group {
+          display: flex;
+          flex-wrap: wrap; /* This is the key: allows buttons to wrap to the next line */
+          justify-content: flex-start;
+          gap: 4px; /* Creates space between buttons */
+      }
+      
+      /* Adjust the buttons themselves for the new layout */
+      .participation-cell button { 
+          flex-grow: 1; /* Allow buttons to grow and fill space */
+          flex-basis: 25px; /* Suggest a starting width for each button */
+          padding: 6px 4px; 
+          font-size: 0.85em; 
+          min-width: 28px; 
+          margin: 0; /* Remove margin as gap is used now */
+      }
+      .participation-cell button.checkmark-style { 
+          font-size: 1em; 
+          min-width: 35px; 
+          flex-basis: 35px;
+      }
+      
       footer { font-size: 0.8em; }
     }
+    /***** END: MOBILE VIEW EDITS *****/
   </style>
 </head>
 <body class="theme-default">
@@ -319,7 +347,7 @@
     </div>
 
     <div id="header">
-      <h1>Hello, Mr/Mrs. [Insert Name Here]!</h1>
+      <h1>Hello, Mr/Mrs. [Teacher Name]!</h1>
     </div>
 
     <div id="controlsSection">
@@ -338,7 +366,7 @@
                 <label for="scaleSelect">Grading Scale:</label>
                 <select id="scaleSelect" disabled>
                     <option value="numerical">Numerical (0-10)</option>
-                    <option value="checkmark">Checkmark (O, ✓-, ✓, ✓+)</option>
+                    <option value="checkmark">Checkmark (O, ✗, ✓, ✓+)</option>
                 </select>
             </div>
             <div id="currentDateDisplayContainer">
@@ -379,9 +407,9 @@
     </div>
   </div> 
   <footer>
-    Licensed to: [INSERT NAME HERE] <br>
+    Licensed to: [Teacher Name] <br>
     GC Education Analytics Student Tracker. For support visit <a href="https://www.gceducationanalytics.com" target="_blank">www.gceducationanalytics.com</a>. <br>
-    Visit the TpT Store: <a href="https://www.teacherspayteachers.com/Store/Gc-Education-Analytics" target="_blank">GC Education Analytics on TpT</a>
+    <span><a href="https://www.teacherspayteachers.com/store/gc-education-analytics" target="_blank" rel="noopener noreferrer">Visit our TpT Store</a></span>
   </footer>
 
   <script>
@@ -423,7 +451,7 @@
     const CHECKMARK_BUTTON_MAP = [ 
       { value: 'A',   display: 'A', isAbsentStyle: true }, 
       { value: 'O',   display: 'O', isAbsentStyle: false}, 
-      { value: 'CM-', display: '✓-', isAbsentStyle: false}, 
+      { value: 'CM-', display: '✗', isAbsentStyle: false}, 
       { value: 'CM',  display: '✓', isAbsentStyle: false}, 
       { value: 'CM+', display: '✓+',isAbsentStyle: false} 
     ];
@@ -511,15 +539,15 @@
             students.forEach(studentName => {
                 const row = tableBody.insertRow();
                 
-                // Student Name Cell
                 const nameCell = row.insertCell();
                 nameCell.textContent = studentName;
                 
-                // Participation Cell
                 const participationCell = row.insertCell();
                 participationCell.classList.add('participation-cell');
                 
+                /***** JS EDIT: Add a class to the button container *****/
                 const buttonContainer = document.createElement('div');
+                buttonContainer.className = 'participation-button-group';
                 
                 if(currentScale === PARTICIPATION_SCALES.NUMERICAL){
                     const absentBtn = createParticipationButton('A', 'A', true, false);
@@ -536,7 +564,6 @@
                 }
                 participationCell.appendChild(buttonContainer);
                 
-                // Comments Cell
                 const commentCell = row.insertCell();
                 commentCell.appendChild(createCommentElements());
             });
@@ -552,10 +579,8 @@
             btn.type = 'button';
             
             btn.addEventListener('click', (e) => {
-                const parent = e.target.parentElement;
-                // Deselect other buttons in the same group
+                const parent = e.target.closest('.participation-button-group');
                 Array.from(parent.children).forEach(child => child.classList.remove('selected'));
-                // Select the clicked one
                 e.target.classList.add('selected');
             });
 
