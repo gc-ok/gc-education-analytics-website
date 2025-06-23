@@ -356,7 +356,7 @@
                 <label for="classSelect">Class:</label>
                 <select id="classSelect">
                     <option value="">--Select Class--</option>
-                    <option value="1">Period 1: Biology</option>
+                    <option value="1" selected>Period 1: Biology</option>
                     <option value="2">Period 2: World History</option>
                     <option value="3">Period 3: Algebra II</option>
                     <option value="4">Period 4: English Lit</option>
@@ -484,13 +484,9 @@
         document.getElementById('currentDateDisplay').textContent = getFormattedDate(new Date());
         document.getElementById('objectiveDate').textContent = getFormattedDate(new Date());
 
-        // --- Event Listeners ---
-        themeSelector.addEventListener('change', (e) => {
-            document.body.className = `theme-${e.target.value}`;
-        });
 
-        classSelect.addEventListener('change', (e) => {
-            currentClassId = e.target.value;
+        function handleClassChange() {
+            currentClassId = classSelect.value; // Read the value directly from the dropdown
             if (currentClassId) {
                 scaleSelect.disabled = false;
                 objectiveSection.style.display = 'block';
@@ -501,7 +497,14 @@
                 objectiveSection.style.display = 'none';
                 studentTableContainer.style.display = 'none';
             }
+        }
+
+        // --- Event Listeners ---
+        themeSelector.addEventListener('change', (e) => {
+            document.body.className = `theme-${e.target.value}`;
         });
+
+        classSelect.addEventListener('change', handleClassChange);
 
         scaleSelect.addEventListener('change', (e) => {
             currentScale = e.target.value;
