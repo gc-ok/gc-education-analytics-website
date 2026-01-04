@@ -52,9 +52,20 @@
         .brand h1 { margin: 0; font-size: 1.5rem; color: var(--primary); }
         .brand h2 { margin: 0; font-size: 0.9rem; color: var(--secondary); font-weight: 400; margin-top: 4px; }
         
-        .header-right { text-align: right; }
+        .header-right { display: flex; align-items: center; gap: 20px; }
         .date-display { font-size: 0.9rem; font-weight: 600; color: #333; }
-        .refresh-note { font-size: 0.75rem; color: var(--secondary); }
+        
+        .settings-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--secondary);
+            transition: 0.2s;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        .settings-btn:hover { background-color: #f0f0f0; color: var(--primary); transform: rotate(45deg); }
 
         /* --- Disclaimer Banner --- */
         .disclaimer-banner {
@@ -117,14 +128,26 @@
             border-bottom: 2px solid var(--light-bg);
             padding-bottom: 1rem;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
         }
         
         .section-title { margin: 0; color: var(--primary); font-size: 1.4rem; }
-        .legend { font-size: 0.85rem; color: var(--secondary); }
-        .legend span { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-left: 10px; margin-right: 4px; vertical-align: middle; }
-        .legend .bad { background-color: var(--danger-bg); border: 1px solid var(--danger-text); }
-        .legend .good { background-color: var(--success-bg); border: 1px solid var(--success-text); }
+        
+        /* Toggle Switch Styles */
+        .view-controls { display: flex; align-items: center; gap: 10px; background: #f1f3f5; padding: 4px; border-radius: 20px; }
+        .view-label { font-size: 0.85rem; font-weight: 600; color: var(--secondary); margin-right: 5px; padding-left: 10px;}
+        .toggle-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 15px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            color: #666;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .toggle-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
         /* Mobile Responsive Table Wrapper */
         .table-responsive {
@@ -383,11 +406,7 @@
         }
 
         /* --- NOTE MODAL SPECIFIC STYLES --- */
-        #noteModal .modal-content {
-            width: 550px; 
-            max-height: 85vh;
-        }
-
+        #noteModal .modal-content { width: 550px; max-height: 85vh; }
         .note-history-container {
             background-color: #f9f9f9;
             border: 1px solid #e0e0e0;
@@ -397,7 +416,6 @@
             overflow-y: auto;
             margin-bottom: 15px;
         }
-
         .note-textarea {
             width: 100%;
             height: 100px;
@@ -410,7 +428,6 @@
             box-sizing: border-box;
             margin-bottom: 10px;
         }
-
         .note-save-btn {
             background-color: var(--success-text);
             color: white;
@@ -421,6 +438,16 @@
             font-weight: 600;
             margin-left: 10px;
         }
+
+        /* --- SETTINGS MODAL STYLES --- */
+        .settings-section { padding: 20px; border-bottom: 1px solid #eee; }
+        .settings-label { display: block; font-weight: 600; margin-bottom: 8px; color: #333; }
+        .settings-input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 1rem; }
+        .settings-sub { font-size: 0.85rem; color: #666; margin-top: 4px; }
+        .mapping-mock { background: #f8f9fa; border: 1px dashed #ccc; padding: 15px; border-radius: 4px; color: #555; font-size: 0.9rem; }
+        .btn-save-settings { background-color: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600; }
+        .group-input-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+        .group-input-row span { font-weight: bold; width: 80px; }
 
         /* --- MOBILE MEDIA QUERIES --- */
         @media (max-width: 900px) {
@@ -434,20 +461,20 @@
                 gap: 10px;
                 padding: 1rem;
             }
-            .header-right { text-align: center; }
+            .header-right { justify-content: center; }
             .container { padding: 0 1rem; margin: 1rem auto; }
             
             .kpi-card { padding: 1.5rem 1rem; }
             .kpi-value { font-size: 3rem; }
             
             .stats-container { padding: 1rem; }
-            .section-header { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .section-title { font-size: 1.2rem; }
             
             .top-list { padding: 1rem; }
             
             /* Modal Adjustments for Mobile */
-            #dataModal .modal-content, #noteModal .modal-content {
+            #dataModal .modal-content, #noteModal .modal-content, #settingsModal .modal-content {
                 width: 100%;
                 margin: 0;
             }
@@ -461,12 +488,12 @@
 
     <header>
         <div class="brand">
-            <h1>American High School</h1>
+            <h1 id="schoolNameDisplay">American High School</h1>
             <h2>Administration Analytics Dashboard</h2>
         </div>
         <div class="header-right">
             <div class="date-display" id="header-date"></div>
-            <div class="refresh-note"></div>
+            <button class="settings-btn" onclick="openSettingsModal()" title="Settings">⚙️</button>
         </div>
     </header>
 
@@ -487,25 +514,20 @@
         <div class="stats-container">
             <div class="section-header"> 
                 <h3 class="section-title">Weekly Statistics Summary</h3>
-                <div class="legend">
-                    <span class="bad"></span> Needs Attention
-                    <span class="good"></span> Positive Trend
+                
+                <div class="view-controls">
+                    <span class="view-label">View By:</span>
+                    <button class="toggle-btn active" id="btnGroups" onclick="switchStatsView('groups')">Groups</button>
+                    <button class="toggle-btn" id="btnGrades" onclick="switchStatsView('grades')">Grade Level</button>
                 </div>
             </div>
             
             <div class="table-responsive">
                 <table id="main-stats-table">
-                    <thead>
-                        <tr>
-                            <th style="min-width: 150px;">Statistic</th>
-                            <th>Total</th>
-                            <th>Group A-G<br></th>
-                            <th>Group H-O<br></th>
-                            <th>Group P-Z<br></th>
-                        </tr>
-                    </thead>
+                    <thead id="stats-header-row">
+                        </thead>
                     <tbody>
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
             <div style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 5px; display: none;" id="scroll-hint">
@@ -590,11 +612,11 @@
                     Student: <strong id="noteStudentName" style="color: var(--primary); font-size: 1.1em;">Student Name</strong>
                 </p>
 
-                <label class="label-text">Previous Admin Notes & Interventions:</label>
+                <label style="font-weight:600; display:block; margin-bottom:5px;">Previous Admin Notes & Interventions:</label>
                 <div id="noteHistory" class="note-history-container">
                 </div>
 
-                <label class="label-text">Add New Note:</label>
+                <label style="font-weight:600; display:block; margin-bottom:5px;">Add New Note:</label>
                 <textarea id="noteInput" class="note-textarea" placeholder="Type your note, intervention log, or parent contact details here..."></textarea>
             </div>
             <div class="modal-footer">
@@ -604,29 +626,86 @@
         </div>
     </div>
 
+    <div id="settingsModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Dashboard Configuration</h3>
+                <button class="modal-close" onclick="closeModal('settingsModal')">×</button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="settings-section">
+                    <label class="settings-label">School Name</label>
+                    <input type="text" id="settingSchoolName" class="settings-input" value="American High School">
+                </div>
+
+                <div class="settings-section">
+                    <label class="settings-label">Last Name Groupings</label>
+                    <div class="group-input-row">
+                        <span>Group 1:</span>
+                        <input type="text" id="settingGroup1" class="settings-input" value="Group A-G">
+                    </div>
+                    <div class="group-input-row">
+                        <span>Group 2:</span>
+                        <input type="text" id="settingGroup2" class="settings-input" value="Group H-O">
+                    </div>
+                    <div class="group-input-row">
+                        <span>Group 3:</span>
+                        <input type="text" id="settingGroup3" class="settings-input" value="Group P-Z">
+                    </div>
+                    <div class="settings-sub">Customize the headers for your alpha-split columns.</div>
+                </div>
+
+                <div class="settings-section">
+                    <label class="settings-label">Data Mapping</label>
+                    <div class="mapping-mock">
+                        <strong>Column Mapping Configured</strong><br>
+                        Student ID: <em>Column A</em><br>
+                        Student Name: <em>Column B</em><br>
+                        Grade Level: <em>Column D</em><br>
+                        Letter Grade: <em>Column F</em><br>
+                        <br>
+                        <a href="#" style="color:var(--primary); text-decoration:underline;">Edit Mapping Definition</a>
+                    </div>
+                    <div class="settings-sub">Changes to mapping will apply on next data upload.</div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn-close" onclick="closeModal('settingsModal')" style="background-color: #6c757d; margin-right:10px;">Cancel</button>
+                <button class="btn-save-settings" onclick="saveSettings()">Save Configuration</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // --- 1. DATA CONFIGURATION ---
         
+        let currentViewMode = 'groups'; // 'groups' or 'grades'
+        
+        // Dynamic labels state
+        let groupLabels = ["Group A-G", "Group H-O", "Group P-Z"];
+
+        // Added dummy data for Grade Levels (g9-g12) to support the toggle
         const dashboardStats = [
-            { key: "TotalStudents", name: "Total Students", desc: "Total active student enrollment for this group.", total: 1330, red: 450, white: 430, gray: 450, type: "neutral", isPercentage: false },
-            { key: "TotalFailing", name: "Total Failing", desc: "Students with at least one grade marked 'F'.", total: 245, red: 85, white: 75, gray: 85, type: "bad", isPercentage: false },
-            { key: "TotalFailingPct", name: "Total Failing %", desc: "Percentage of total students who are failing.", total: 18.4, red: 18.8, white: 17.4, gray: 18.8, type: "bad", isPercentage: true },
-            { key: "AllAs", name: "Current All A's", desc: "Students with a GPA of 4.0 or all 'A's.", total: 412, red: 140, white: 130, gray: 142, type: "good", isPercentage: false },
-            { key: "AllAsPct", name: "All A's %", desc: "Percentage of students with all A's.", total: 30.9, red: 31.1, white: 30.2, gray: 31.5, type: "good", isPercentage: true },
-            { key: "AllAsBs", name: "Current All A's/B's", desc: "Students with no grades lower than 'B'.", total: 680, red: 230, white: 220, gray: 230, type: "good", isPercentage: false },
-            { key: "NewFs", name: "New F's (0 to 1+)", desc: "Students who dropped from passing to failing.", total: 32, red: 12, white: 8, gray: 12, type: "bad", isPercentage: false },
-            { key: "ClearedFs", name: "Cleared F's (F to 0)", desc: "Students who cleared all F's.", total: 15, red: 6, white: 4, gray: 5, type: "good", isPercentage: false },
-            { key: "IncreasedFs", name: "Increased F's", desc: "Students failing more classes than before.", total: 48, red: 18, white: 14, gray: 16, type: "bad", isPercentage: false },
-            { key: "ReducedFs", name: "Reduced F's", desc: "Students failing fewer classes than before.", total: 22, red: 8, white: 6, gray: 8, type: "good", isPercentage: false },
-            { key: "GpaTo4", name: "Achieved 4.0 GPA", desc: "Students whose GPA improved to 4.0.", total: 8, red: 3, white: 2, gray: 3, type: "good", isPercentage: false },
-            { key: "NewTardies", name: "Increase of 5+ Tardies", desc: "Sudden increase in tardiness.", total: 45, red: 15, white: 10, gray: 20, type: "bad", isPercentage: false },
-            { key: "NewGuidances", name: "Increase of 5+ Guidances", desc: "Sudden increase in guidance visits.", total: 12, red: 5, white: 3, gray: 4, type: "bad", isPercentage: false }
+            { key: "TotalStudents", name: "Total Students", desc: "Total active student enrollment.", total: 1330, red: 450, white: 430, gray: 450, g9: 350, g10: 340, g11: 330, g12: 310, type: "neutral", isPercentage: false },
+            { key: "TotalFailing", name: "Total Failing", desc: "Students with at least one 'F'.", total: 245, red: 85, white: 75, gray: 85, g9: 90, g10: 75, g11: 50, g12: 30, type: "bad", isPercentage: false },
+            { key: "TotalFailingPct", name: "Total Failing %", desc: "Pct of students failing.", total: 18.4, red: 18.8, white: 17.4, gray: 18.8, g9: 25.7, g10: 22.0, g11: 15.1, g12: 9.6, type: "bad", isPercentage: true },
+            { key: "AllAs", name: "Current All A's", desc: "Students with 4.0 GPA.", total: 412, red: 140, white: 130, gray: 142, g9: 90, g10: 100, g11: 110, g12: 112, type: "good", isPercentage: false },
+            { key: "AllAsPct", name: "All A's %", desc: "Pct of students with all A's.", total: 30.9, red: 31.1, white: 30.2, gray: 31.5, g9: 25.7, g10: 29.4, g11: 33.3, g12: 36.1, type: "good", isPercentage: true },
+            { key: "AllAsBs", name: "Current All A's/B's", desc: "No grades lower than 'B'.", total: 680, red: 230, white: 220, gray: 230, g9: 150, g10: 170, g11: 180, g12: 180, type: "good", isPercentage: false },
+            { key: "NewFs", name: "New F's (0 to 1+)", desc: "Dropped to failing.", total: 32, red: 12, white: 8, gray: 12, g9: 15, g10: 10, g11: 5, g12: 2, type: "bad", isPercentage: false },
+            { key: "ClearedFs", name: "Cleared F's (F to 0)", desc: "Cleared all F's.", total: 15, red: 6, white: 4, gray: 5, g9: 5, g10: 5, g11: 3, g12: 2, type: "good", isPercentage: false },
+            { key: "IncreasedFs", name: "Increased F's", desc: "Failing more classes.", total: 48, red: 18, white: 14, gray: 16, g9: 20, g10: 15, g11: 8, g12: 5, type: "bad", isPercentage: false },
+            { key: "ReducedFs", name: "Reduced F's", desc: "Failing fewer classes.", total: 22, red: 8, white: 6, gray: 8, g9: 8, g10: 8, g11: 4, g12: 2, type: "good", isPercentage: false },
+            { key: "GpaTo4", name: "Achieved 4.0 GPA", desc: "Improved to 4.0.", total: 8, red: 3, white: 2, gray: 3, g9: 2, g10: 2, g11: 2, g12: 2, type: "good", isPercentage: false },
+            { key: "NewTardies", name: "Increase of 5+ Tardies", desc: "Sudden tardiness.", total: 45, red: 15, white: 10, gray: 20, g9: 20, g10: 10, g11: 10, g12: 5, type: "bad", isPercentage: false },
+            { key: "NewGuidances", name: "Increase of 5+ Guidances", desc: "Sudden guidance visits.", total: 12, red: 5, white: 3, gray: 4, g9: 6, g10: 4, g11: 1, g12: 1, type: "bad", isPercentage: false }
         ];
 
         // --- TOP 10 LISTS DATA ---
-        // Teachers Volume: High counts, normal share
         const teachersByVolume = [
-            { name: "Mr. Smith", count: 42, stat: "12%" }, // 12% of school total Fs
+            { name: "Mr. Smith", count: 42, stat: "12%" }, 
             { name: "Mrs. Johnson", count: 38, stat: "10%" },
             { name: "Mr. Williams", count: 35, stat: "9.5%" },
             { name: "Ms. Brown", count: 31, stat: "8%" },
@@ -638,9 +717,8 @@
             { name: "Mr. Martinez", count: 15, stat: "3%" }
         ];
 
-        // Teachers Rate: Lower counts, but high internal failure rates (Red Flags)
         const teachersByRate = [
-            { name: "Mr. Strict", count: 8, stat: "53%" }, // 8 failing out of 15 students
+            { name: "Mr. Strict", count: 8, stat: "53%" }, 
             { name: "Ms. NewHire", count: 12, stat: "48%" },
             { name: "Mr. HardGrader", count: 15, stat: "42%" },
             { name: "Mrs. Tough", count: 20, stat: "38%" },
@@ -652,7 +730,6 @@
             { name: "Ms. English", count: 30, stat: "20%" }
         ];
 
-        // Classes Volume: Aggregates of teachers, so numbers are higher
         const classesByVolume = [
             { name: "Algebra I (All)", count: 115, stat: "15%" },
             { name: "Biology (All)", count: 95, stat: "12%" },
@@ -666,9 +743,8 @@
             { name: "Spanish I", count: 40, stat: "4%" }
         ];
 
-        // Classes Rate: High failure rates relative to enrollment
         const classesByRate = [
-            { name: "AP Physics", count: 12, stat: "60%" }, // Hard class, small enrollment
+            { name: "AP Physics", count: 12, stat: "60%" }, 
             { name: "Remedial Math", count: 28, stat: "55%" },
             { name: "AP Calculus BC", count: 8, stat: "50%" },
             { name: "Credit Recovery", count: 45, stat: "48%" },
@@ -681,17 +757,10 @@
         ];
 
         const topListsData = {
-            teachers: {
-                volume: teachersByVolume,
-                rate: teachersByRate
-            },
-            classes: {
-                volume: classesByVolume,
-                rate: classesByRate
-            }
+            teachers: { volume: teachersByVolume, rate: teachersByRate },
+            classes: { volume: classesByVolume, rate: classesByRate }
         };
 
-        // Dummy Data Generators
         const firstNames = ["James", "Mary", "Robert", "Patricia", "John", "Jennifer", "Michael", "Linda", "David", "Elizabeth", "William", "Barbara", "Richard", "Susan", "Joseph", "Jessica", "Thomas", "Sarah", "Charles", "Karen"];
         const lastNamesRed = ["Adams", "Baker", "Clark", "Davis", "Evans", "Foster", "Garcia", "Green"];
         const lastNamesWhite = ["Harris", "Ingram", "Jackson", "King", "Lewis", "Martin", "Nelson", "Owens"];
@@ -700,107 +769,98 @@
         // --- 2. INITIALIZATION & RENDERING ---
 
         function init() {
-            // Set Date
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('header-date').textContent = new Date().toLocaleDateString('en-US', options);
 
-            // Render Main Stats Table
+            // Initial render
             renderStatsTable();
-
-            // Render Initial Top Lists (Default: Volume)
             renderTopList('teachers', 'volume');
             renderTopList('classes', 'volume');
             
-            // Check for Mobile and show hint
             if(window.innerWidth < 768) {
                 document.getElementById('scroll-hint').style.display = 'block';
             }
         }
 
-        function renderStatsTable() {
-            const tbody = document.querySelector('#main-stats-table tbody');
-            let html = '';
+        function switchStatsView(mode) {
+            currentViewMode = mode;
+            
+            // Update buttons
+            document.getElementById('btnGroups').classList.toggle('active', mode === 'groups');
+            document.getElementById('btnGrades').classList.toggle('active', mode === 'grades');
+            
+            renderStatsTable();
+        }
 
+        function renderStatsTable() {
+            const thead = document.getElementById('stats-header-row');
+            const tbody = document.querySelector('#main-stats-table tbody');
+            
+            // 1. Build Header based on View Mode
+            let headerHTML = '<tr><th style="min-width: 150px;">Statistic</th><th>Total</th>';
+            if (currentViewMode === 'groups') {
+                headerHTML += `<th>${groupLabels[0]}</th><th>${groupLabels[1]}</th><th>${groupLabels[2]}</th>`;
+            } else {
+                headerHTML += `<th>Grade 9</th><th>Grade 10</th><th>Grade 11</th><th>Grade 12</th>`;
+            }
+            headerHTML += '</tr>';
+            thead.innerHTML = headerHTML;
+
+            // 2. Build Body based on View Mode
+            let bodyHTML = '';
             dashboardStats.forEach(stat => {
                 let rowClass = '';
                 if (stat.type === 'bad') rowClass = 'row-bad';
                 else if (stat.type === 'good') rowClass = 'row-good';
 
                 const createCell = (val, group) => {
-                    if (stat.isPercentage) {
-                        return `<span class="non-clickable-cell">${val}%</span>`;
-                    }
-                    if (val === 0) {
-                        return `<span class="non-clickable-cell" style="color:#ccc;">0</span>`;
-                    }
+                    if (stat.isPercentage) return `<span class="non-clickable-cell">${val}%</span>`;
+                    if (val === 0) return `<span class="non-clickable-cell" style="color:#ccc;">0</span>`;
                     const cleanName = stat.name.replace(/'/g, "\\'");
                     const cleanDesc = stat.desc.replace(/'/g, "\\'");
-                    
                     return `<span class="clickable-cell" onclick="openStudentListModal('${cleanName}', '${group}', ${val}, '${stat.key}', '${cleanDesc}')">${val}</span>`;
                 };
 
-                html += `
-                    <tr class="${rowClass}">
-                        <td>${stat.name}</td>
-                        <td>${createCell(stat.total, 'Total')}</td>
-                        <td>${createCell(stat.red, 'Red Team')}</td>
-                        <td>${createCell(stat.white, 'White Team')}</td>
-                        <td>${createCell(stat.gray, 'Gray Team')}</td>
-                    </tr>
-                `;
-            });
+                bodyHTML += `<tr class="${rowClass}"><td>${stat.name}</td>`;
+                bodyHTML += `<td>${createCell(stat.total, 'Total')}</td>`;
 
-            tbody.innerHTML = html;
+                if(currentViewMode === 'groups') {
+                    bodyHTML += `<td>${createCell(stat.red, groupLabels[0])}</td>`;
+                    bodyHTML += `<td>${createCell(stat.white, groupLabels[1])}</td>`;
+                    bodyHTML += `<td>${createCell(stat.gray, groupLabels[2])}</td>`;
+                } else {
+                    bodyHTML += `<td>${createCell(stat.g9, 'Grade 9')}</td>`;
+                    bodyHTML += `<td>${createCell(stat.g10, 'Grade 10')}</td>`;
+                    bodyHTML += `<td>${createCell(stat.g11, 'Grade 11')}</td>`;
+                    bodyHTML += `<td>${createCell(stat.g12, 'Grade 12')}</td>`;
+                }
+                bodyHTML += `</tr>`;
+            });
+            tbody.innerHTML = bodyHTML;
         }
 
-        // Handles the tab switching
         function switchList(category, mode, btnElement) {
-            // Update active state of buttons
             const parent = btnElement.parentElement;
             parent.querySelectorAll('.list-tab').forEach(b => b.classList.remove('active'));
             btnElement.classList.add('active');
-
-            // Re-render the table
             renderTopList(category, mode);
         }
 
         function renderTopList(category, mode) {
             const tbodyId = category === 'teachers' ? 'top-teachers-list' : 'top-classes-list';
             const theadId = category === 'teachers' ? 'teachers-thead' : 'classes-thead';
-            
             const tbody = document.getElementById(tbodyId);
             const thead = document.getElementById(theadId);
-            
             const data = topListsData[category][mode];
-
-            // 1. Update Header
-            // If mode is volume: "Share of School Fs"
-            // If mode is rate: "Internal Failure Rate"
             const statHeaderLabel = mode === 'volume' ? '% of School Fs' : 'Class Failure %';
             
-            thead.innerHTML = `
-                <tr>
-                    <th class="rank-col">#</th>
-                    <th>${category === 'teachers' ? 'Teacher' : 'Class'}</th>
-                    <th class="val-col">F Count</th>
-                    <th class="rate-col">${statHeaderLabel}</th>
-                </tr>
-            `;
+            thead.innerHTML = `<tr><th class="rank-col">#</th><th>${category === 'teachers' ? 'Teacher' : 'Class'}</th><th class="val-col">F Count</th><th class="rate-col">${statHeaderLabel}</th></tr>`;
 
-            // 2. Update Body
             let html = '';
-            if(!data || data.length === 0) {
-                html = '<tr><td colspan="4">No data available.</td></tr>';
-            } else {
+            if(!data || data.length === 0) html = '<tr><td colspan="4">No data available.</td></tr>';
+            else {
                 data.forEach((item, index) => {
-                    html += `
-                        <tr>
-                            <td class="rank-col">${index + 1}</td>
-                            <td>${item.name}</td>
-                            <td class="val-col">${item.count}</td>
-                            <td class="rate-col">${item.stat}</td>
-                        </tr>
-                    `;
+                    html += `<tr><td class="rank-col">${index + 1}</td><td>${item.name}</td><td class="val-col">${item.count}</td><td class="rate-col">${item.stat}</td></tr>`;
                 });
             }
             tbody.innerHTML = html;
@@ -811,32 +871,26 @@
         function openStudentListModal(metricName, groupName, count, metricKey, description) {
             const modal = document.getElementById('dataModal');
             document.getElementById('modalTitle').textContent = metricName;
-            
-            const statsLine = document.getElementById('modalStatsLine');
-            const descLine = document.getElementById('modalDescLine');
-            
-            statsLine.innerHTML = `Group: <strong style="color:var(--primary)">${groupName}</strong> &nbsp;|&nbsp; Count: <strong>${count}</strong>`;
-            descLine.textContent = description; 
+            document.getElementById('modalStatsLine').innerHTML = `Group: <strong style="color:var(--primary)">${groupName}</strong> &nbsp;|&nbsp; Count: <strong>${count}</strong>`;
+            document.getElementById('modalDescLine').textContent = description; 
             
             const listContainer = document.getElementById('modalList');
             listContainer.innerHTML = ''; 
-
             let studentsHTML = '';
             for (let i = 0; i < count; i++) {
                 studentsHTML += generateStudentRow(groupName, metricKey);
             }
             listContainer.innerHTML = studentsHTML;
-
             modal.style.display = 'flex';
         }
 
         function generateStudentRow(group, metricKey) {
             const fname = firstNames[Math.floor(Math.random() * firstNames.length)];
             let lname = '';
-            
-            if (group === 'Red Team') lname = lastNamesRed[Math.floor(Math.random() * lastNamesRed.length)];
-            else if (group === 'White Team') lname = lastNamesWhite[Math.floor(Math.random() * lastNamesWhite.length)];
-            else if (group === 'Gray Team') lname = lastNamesGray[Math.floor(Math.random() * lastNamesGray.length)];
+            // Logic to somewhat match group names if possible (simple heuristic)
+            if (group.includes('A-G')) lname = lastNamesRed[Math.floor(Math.random() * lastNamesRed.length)];
+            else if (group.includes('H-O')) lname = lastNamesWhite[Math.floor(Math.random() * lastNamesWhite.length)];
+            else if (group.includes('P-Z')) lname = lastNamesGray[Math.floor(Math.random() * lastNamesGray.length)];
             else {
                 const allNames = [...lastNamesRed, ...lastNamesWhite, ...lastNamesGray];
                 lname = allNames[Math.floor(Math.random() * allNames.length)];
@@ -846,26 +900,22 @@
             const studentName = `${lname}, ${fname}`;
             const safeStudentName = studentName.replace(/'/g, "\\'");
 
-            return `
-                <div class="student-row">
-                    <div class="student-info">
-                        <span class="student-name">${studentName}</span>
-                        <span class="student-meta">ID: ${id}</span>
-                    </div>
-                    <button class="action-btn" title="Add Note" onclick="openNoteModal('${safeStudentName}')">📝 Note</button>
-                </div>
-            `;
+            return `<div class="student-row">
+                        <div class="student-info">
+                            <span class="student-name">${studentName}</span>
+                            <span class="student-meta">ID: ${id}</span>
+                        </div>
+                        <button class="action-btn" title="Add Note" onclick="openNoteModal('${safeStudentName}')">📝 Note</button>
+                    </div>`;
         }
 
         // --- 4. NOTE MODAL LOGIC ---
-
         let currentNoteStudent = ""; 
 
         function openNoteModal(studentName) {
             currentNoteStudent = studentName;
             document.getElementById('noteStudentName').textContent = studentName;
             document.getElementById('noteInput').value = ""; 
-            
             const historyDiv = document.getElementById('noteHistory');
             const hasHistory = Math.random() > 0.3; 
             
@@ -873,42 +923,52 @@
                 const d = new Date();
                 d.setDate(d.getDate() - Math.floor(Math.random() * 10));
                 const dateStr = d.toLocaleDateString();
-
-                const notes = [
-                    "Called parent regarding missing assignments.",
-                    "Met with guidance counselor.",
-                    "Student is attending tutoring during study hall.",
-                    "Discipline referral processed.",
-                    "Grade check completed."
-                ];
+                const notes = ["Called parent regarding missing assignments.", "Met with guidance counselor.", "Student attending tutoring.", "Discipline referral processed.", "Grade check completed."];
                 const admins = ["Principal Jones", "AP Smith", "Counselor Doe", "Admin Assistant"];
-                
                 const randomNote = notes[Math.floor(Math.random() * notes.length)];
                 const randomAdmin = admins[Math.floor(Math.random() * admins.length)];
 
-                historyDiv.innerHTML = `
-                    <div class="note-entry">
-                        <div class="note-meta">${dateStr} - ${randomAdmin}</div>
-                        <div class="note-text">${randomNote}</div>
-                    </div>
-                `;
+                historyDiv.innerHTML = `<div class="note-entry" style="border-bottom:1px solid #eee; padding-bottom:5px; margin-bottom:5px;">
+                                            <div class="note-meta" style="font-size:0.75rem; color:#888;">${dateStr} - ${randomAdmin}</div>
+                                            <div class="note-text" style="font-size:0.9rem;">${randomNote}</div>
+                                        </div>`;
             } else {
                 historyDiv.innerHTML = `<div style="color:#999; font-style:italic; font-size:0.9em;">No previous notes found.</div>`;
             }
-
             document.getElementById('noteModal').style.display = 'flex';
             document.getElementById('noteInput').focus();
         }
 
         function saveNote() {
             const text = document.getElementById('noteInput').value.trim();
-            if (text === "") {
-                alert("Please write a note before saving.");
-                return;
-            }
-            
-            alert(`Note saved for ${currentNoteStudent}:\n\n"${text}"\n\n(This is a demo. In the full product, this saves to the database.)`);
+            if (text === "") return alert("Please write a note before saving.");
+            alert(`Note saved for ${currentNoteStudent}:\n\n"${text}"`);
             closeModal('noteModal');
+        }
+
+        // --- 5. SETTINGS MODAL LOGIC ---
+        function openSettingsModal() {
+            document.getElementById('settingsModal').style.display = 'flex';
+        }
+
+        function saveSettings() {
+            // Update School Name
+            const newName = document.getElementById('settingSchoolName').value;
+            document.getElementById('schoolNameDisplay').textContent = newName;
+
+            // Update Group Labels (Real-time update)
+            const g1 = document.getElementById('settingGroup1').value;
+            const g2 = document.getElementById('settingGroup2').value;
+            const g3 = document.getElementById('settingGroup3').value;
+            groupLabels = [g1, g2, g3];
+            
+            // Refresh table if in groups mode
+            if(currentViewMode === 'groups') {
+                renderStatsTable();
+            }
+
+            alert("Configuration Saved!");
+            closeModal('settingsModal');
         }
 
         function closeModal(modalId) {
@@ -921,9 +981,7 @@
             }
         }
 
-        // Start App
         init();
-
     </script>
 </body>
 </html>
