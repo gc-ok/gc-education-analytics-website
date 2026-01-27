@@ -366,24 +366,45 @@
         overflow-x: hidden;
     }
 
+    /* Add/Replace inside your <style> tag */
+    
     .btn-pilot {
-        background-color: var(--success-text); /* Uses your existing green variable */
+        /* Bright Gradient to stand out against the blue header */
+        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%); 
         color: white;
         border: none;
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-weight: 700;
+        padding: 10px 24px; /* Larger click area */
+        border-radius: 50px; /* Fully rounded pill shape */
+        font-weight: 800; /* Extra Bold */
+        font-size: 0.95rem;
         cursor: pointer;
-        font-size: 0.9rem;
-        margin-right: 15px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-        transition: transform 0.2s;
+        margin-right: 20px;
+        
+        /* Glow Effect */
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4); 
+        transition: all 0.3s ease;
         white-space: nowrap;
+        
+        /* Attention-grabbing animation */
+        animation: pulse-glow 2s infinite;
     }
     
     .btn-pilot:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transform: translateY(-2px) scale(1.05); /* Slight grow effect */
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+    }
+    
+    /* Keyframes for the heartbeat/pulse effect */
+    @keyframes pulse-glow {
+        0% {
+            box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+        }
     }
 </style>
 
