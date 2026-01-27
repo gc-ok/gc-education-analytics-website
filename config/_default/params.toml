@@ -7,7 +7,7 @@
 
 # Added Site Description (Tagline)
 description = "GC Education Analytics LLC: Empowering Educators, Simplifying Data."
-copyright = "© 2025 GC Education Analytics LLC. All Rights Reserved." # Hugo replaces {year}
+copyright = "© 2026 GC Education Analytics LLC. All Rights Reserved." # Hugo replaces {year}
 
 # Added Email for potential theme use (some themes use this for contact info)
 email = "gcastillo@gceducationanalytics.com"
