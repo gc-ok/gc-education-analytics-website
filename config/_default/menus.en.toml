@@ -43,6 +43,17 @@
   pageRef = "/contact/" # Link to a 'contact.md' page
   weight = 40
 
+# --- Footer Menu ---
+
+[[footer]]
+  name = "Privacy Policy"
+  pageRef = "/privacy"
+  weight = 10
+
+[[footer]]
+  name = "Contact"
+  url = "mailto:gcastillo@gceducationanalytics.com"
+  weight = 20
 
 # Example for a Blog placeholder, uncomment if you want it
 # [[main]]
