@@ -365,6 +365,26 @@
     #intervention-student-list {
         overflow-x: hidden;
     }
+
+    .btn-pilot {
+        background-color: var(--success-text); /* Uses your existing green variable */
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 0.9rem;
+        margin-right: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        transition: transform 0.2s;
+        white-space: nowrap;
+    }
+    
+    .btn-pilot:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
 </style>
 
 </head>
@@ -383,6 +403,7 @@
             </div>
         </div>
         <div class="header-right">
+            <button class="btn-pilot" onclick="openLeadModal()">🚀 Join Pilot ($299)</button>
             <div class="date-display" id="header-date"></div>
             <button class="settings-btn" onclick="openSettingsModal()" title="Settings">⚙️</button>
         </div>
@@ -534,7 +555,10 @@
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 GC Education Analytics. All Rights Reserved.</p>
-            <p>Visit us at <a href="#" class="footer-link">gceducationanalytics.com</a> for enterprise solutions.</p>
+            <p>
+                <a href="https://gceducationanalytics.com" class="footer-link" target="_blank">Main Website</a> | 
+                <a href="https://gceducationanalytics.com/privacy" class="footer-link" target="_blank">Privacy Policy</a>
+            </p>
         </div>
     </footer>
 
@@ -629,6 +653,25 @@
         </div>
     </div>
 
+    <div id="leadModal" class="modal-overlay">
+        <div class="modal-content" style="width: 500px; max-height: 90vh;">
+            <div class="modal-header">
+                <h3>Get Dashboard Access</h3>
+                <button class="modal-close" onclick="closeModal('leadModal')">×</button>
+            </div>
+            <div class="modal-body" style="padding: 0; overflow: hidden;">
+                
+                <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" 
+                        width="100%" 
+                        height="500" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">Loading…</iframe>
+                        
+            </div>
+        </div>
+    </div>
+    
     <script>
         /**
          * CLIENT-SIDE DATA GENERATOR
@@ -1053,7 +1096,7 @@
             });
             const iList = Object.values(iTMap).sort((a,b) => b.count - a.count).slice(0,10);
             
-            tableBody.innerHTML = iList.map(i => `
+            table.innerHTML = iList.map(i => `
                 <tr><td>${i.t}</td><td>${i.c}</td><td class="val-col" style="color:#c53030;">${i.count}</td></tr>
             `).join('');
         }
@@ -1258,6 +1301,11 @@
             });
         }
 
+        // ADD this function anywhere in your script section
+        function openLeadModal() { 
+            document.getElementById('leadModal').style.display = 'flex'; 
+        }
+        
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
         window.onclick = function(e) { if(e.target.classList.contains('modal-overlay')) e.target.style.display = 'none'; }
 
