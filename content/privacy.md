@@ -39,4 +39,4 @@ We use the following trusted third-party services to run our website and busines
 * **Tally / Google Forms:** For collecting contact information.
 
 ## 6. Contact Us
-If you have questions about this policy or wish to have your contact information deleted from our records, please contact us at: **[INSERT YOUR EMAIL HERE]**
+If you have questions about this policy or wish to have your contact information deleted from our records, please contact us at: **gcastillo@gceducationanalytics.com**
