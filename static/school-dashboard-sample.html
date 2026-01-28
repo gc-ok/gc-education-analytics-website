@@ -567,15 +567,9 @@
                         </div>
                         <div id="intervention-student-list" style="max-height: 600px; overflow-y: auto;"></div>
                     </div>
-                    
                     <div>
                         <h4 style="margin:20px 0 10px 0;">Course Intervention Needs</h4>
-                        <div class="table-responsive">
-                            <table class="mini-table">
-                                <thead><tr><th>Teacher</th><th>Course</th><th class="val-col">Stubborn Fs</th></tr></thead>
-                                <tbody id="intervention-teacher-list"></tbody>
-                            </table>
-                        </div>
+                        <div id="intervention-teacher-list" style="max-height: 600px; overflow-y: auto;"></div>
                     </div>
                 </div>
             </div>
@@ -1080,45 +1074,44 @@
         // --- 4. INTERVENTION LOGIC ---
         function renderIntervention() {
             const weeks = parseInt(document.getElementById('streakWeeks').value);
-            const listDiv = document.getElementById('intervention-student-list');
-            const tableBody = document.getElementById('intervention-teacher-list'); // <--- Defined here
-
-            // Find students with streak >= weeks
+            const studentContainer = document.getElementById('intervention-student-list');
+            const teacherContainer = document.getElementById('intervention-teacher-list');
+        
+            // 1. Filter At-Risk Students
             const atRisk = studentDB.filter(s => s.courses.some(c => c.streak >= weeks));
             
-            // Sort by number of stubborn classes
+            // Sort students by severity
             atRisk.sort((a,b) => {
                 const countA = a.courses.filter(c => c.streak >= weeks).length;
                 const countB = b.courses.filter(c => c.streak >= weeks).length;
                 return countB - countA;
             });
-
+        
             document.getElementById('risk-count').textContent = atRisk.length;
-
+        
+            // 2. Render Student Left Column
             if(atRisk.length === 0) {
-                listDiv.innerHTML = '<div style="padding:20px; text-align:center;">No streaks found.</div>';
-                tableBody.innerHTML = '<tr><td colspan="3">No data.</td></tr>';
+                studentContainer.innerHTML = '<div style="padding:20px; text-align:center;">No streaks found.</div>';
+                teacherContainer.innerHTML = '<div style="padding:20px; text-align:center;">No data.</div>';
                 return;
             }
-
-            // Student Accordion
-            let html = '';
+        
+            let sHtml = '';
             atRisk.forEach((s, idx) => {
                 const badCourses = s.courses.filter(c => c.streak >= weeks);
-                const count = badCourses.length;
                 
-                html += `
+                sHtml += `
                 <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAcc(${idx})">
+                    <div class="accordion-header" onclick="toggleAcc('student', ${idx})">
                         <div class="acc-title-container">
                             ${s.name} <span style="font-weight:400; color:#666; font-size:0.9em;">(${s.id})</span>
                         </div>
                         <div class="acc-badge-container">
-                            <span class="streak-badge">${count} Classes</span>
-                            <span class="accordion-icon" id="icon-${idx}">▼</span>
+                            <span class="streak-badge">${badCourses.length} Classes</span>
+                            <span class="accordion-icon" id="icon-student-${idx}">▼</span>
                         </div>
                     </div>
-                    <div class="accordion-content" id="acc-${idx}">
+                    <div class="accordion-content" id="acc-student-${idx}">
                         <table style="width:100%; font-size:0.9rem;">
                             ${badCourses.map(c => `
                                 <tr>
@@ -1133,30 +1126,58 @@
                     </div>
                 </div>`;
             });
-            listDiv.innerHTML = html;
-
-            // Teacher Aggregate for Intervention
+            studentContainer.innerHTML = sHtml;
+        
+            // 3. Aggregate Teacher Data (Right Column)
             const iTMap = {};
             atRisk.forEach(s => {
                 s.courses.forEach(c => {
                     if(c.streak >= weeks) {
                         const key = c.teacher + "|" + c.course;
-                        if(!iTMap[key]) iTMap[key] = { t: c.teacher, c: c.course, count: 0 };
+                        // We now store an array of 'students' for the drill-down
+                        if(!iTMap[key]) iTMap[key] = { t: c.teacher, c: c.course, count: 0, students: [] };
                         iTMap[key].count++;
+                        iTMap[key].students.push({ name: s.name, streak: c.streak });
                     }
                 });
             });
-            const iList = Object.values(iTMap).sort((a,b) => b.count - a.count).slice(0,10);
             
-            // --- FIX IS HERE: Changed 'table.innerHTML' to 'tableBody.innerHTML' ---
-            tableBody.innerHTML = iList.map(i => `
-                <tr><td>${i.t}</td><td>${i.c}</td><td class="val-col" style="color:#c53030;">${i.count}</td></tr>
-            `).join('');
+            const iList = Object.values(iTMap).sort((a,b) => b.count - a.count).slice(0, 10);
+        
+            // 4. Render Teacher Right Column (As Accordions)
+            let tHtml = '';
+            iList.forEach((item, idx) => {
+                tHtml += `
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAcc('teacher', ${idx})">
+                        <div class="acc-title-container">
+                            ${item.t} <span style="font-weight:400; color:#666; font-size:0.9em;">- ${item.c}</span>
+                        </div>
+                        <div class="acc-badge-container">
+                            <span class="streak-badge">${item.count} Students</span>
+                            <span class="accordion-icon" id="icon-teacher-${idx}">▼</span>
+                        </div>
+                    </div>
+                    <div class="accordion-content" id="acc-teacher-${idx}">
+                        <table style="width:100%; font-size:0.85rem;">
+                            ${item.students.map(st => `
+                                <tr>
+                                    <td style="text-align:left; border:none; padding:4px;">${st.name}</td>
+                                    <td style="text-align:right; border:none; padding:4px; font-weight:bold;">${st.streak} Wks</td>
+                                </tr>
+                            `).join('')}
+                        </table>
+                    </div>
+                </div>`;
+            });
+            teacherContainer.innerHTML = tHtml;
         }
-
-        function toggleAcc(id) {
-            const el = document.getElementById(`acc-${id}`);
-            const icon = document.getElementById(`icon-${id}`);
+        
+        // Updated Toggle Function (Handles both Student and Teacher sides)
+        function toggleAcc(type, id) {
+            const el = document.getElementById(`acc-${type}-${id}`);
+            const icon = document.getElementById(`icon-${type}-${id}`);
+            
             if(el.style.display === 'block') {
                 el.style.display = 'none';
                 icon.classList.remove('rotate-down');
