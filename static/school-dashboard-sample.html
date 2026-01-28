@@ -1077,10 +1077,10 @@
             const studentContainer = document.getElementById('intervention-student-list');
             const teacherContainer = document.getElementById('intervention-teacher-list');
 
-            // 1. Filter At-Risk Students (Must have at least 1 stubborn F to appear in list)
+            // 1. Filter At-Risk Students
             const atRisk = studentDB.filter(s => s.courses.some(c => c.streak >= weeks));
             
-            // Sort students by severity (most stubborn Fs first)
+            // Sort students by severity
             atRisk.sort((a,b) => {
                 const countA = a.courses.filter(c => c.streak >= weeks).length;
                 const countB = b.courses.filter(c => c.streak >= weeks).length;
@@ -1098,7 +1098,6 @@
 
             let sHtml = '';
             atRisk.forEach((s, idx) => {
-                // We still calculate this just for the "3 Classes" badge count
                 const badCount = s.courses.filter(c => c.streak >= weeks).length;
                 
                 sHtml += `
@@ -1112,30 +1111,34 @@
                             <span class="accordion-icon" id="icon-student-${idx}">▼</span>
                         </div>
                     </div>
-                    <div class="accordion-content" id="acc-student-${idx}">
-                        <table style="width:100%; font-size:0.9rem;">
+                    <div class="accordion-content" id="acc-student-${idx}" style="padding: 0;"> 
+                        <table style="width:100%; font-size:0.95rem; border-collapse: collapse;">
                             ${s.courses.map(c => {
                                 const isFailing = c.streak >= weeks;
                                 
-                                // Conditional Styling
-                                const rowBg = isFailing ? '#fff5f5' : 'transparent';
-                                const textColor = isFailing ? '#c53030' : '#28a745'; // Red vs Green
+                                // Logic for Teacher Prefix (Consistent based on name length)
+                                const prefix = c.teacher.length % 2 === 0 ? "Ms." : "Mr.";
+                                
+                                // Styling
+                                const rowBg = isFailing ? '#fff5f5' : 'white';
+                                const textColor = isFailing ? '#c53030' : '#28a745'; 
                                 const statusText = isFailing ? `⚠️ ${c.streak} Wks` : `${c.grade}`; 
-                                const weight = isFailing ? 'bold' : 'normal';
+                                const weight = isFailing ? 'bold' : '500';
 
                                 return `
-                                <tr style="background-color: ${rowBg}; border-bottom:1px solid #eee;">
-                                    <td style="text-align:left; border:none; padding:6px 4px;">
-                                        ${c.course} <span style="color:#999; font-size:0.85em;">(${c.teacher})</span>
+                                <tr style="background-color: ${rowBg}; border-bottom:1px solid #f0f0f0;">
+                                    <td style="text-align:left; border:none; padding: 12px 15px;">
+                                        <span style="font-weight:500; color:#333;">${c.course}</span> 
+                                        <span style="color:#888; font-size:0.9em; margin-left:4px;">(${prefix} ${c.teacher})</span>
                                     </td>
-                                    <td style="text-align:right; border:none; padding:6px 4px; color:${textColor}; font-weight:${weight};">
+                                    <td style="text-align:center; border:none; padding: 12px 15px; color:${textColor}; font-weight:${weight}; width: 80px;">
                                         ${statusText}
                                     </td>
                                 </tr>
                                 `;
                             }).join('')}
                         </table>
-                        <div style="text-align:right; margin-top:10px;">
+                        <div style="text-align:right; padding: 12px 15px; background: #fafafa; border-top:1px solid #eee;">
                             <button class="action-btn" onclick="openNoteModal('${s.name.replace(/'/g,"\\'")}')">Add Note</button>
                         </div>
                     </div>
@@ -1144,7 +1147,6 @@
             studentContainer.innerHTML = sHtml;
 
             // 3. Aggregate Teacher Data (Right Column)
-            // NOTE: Teachers still only show up if they have failing students.
             const iTMap = {};
             atRisk.forEach(s => {
                 s.courses.forEach(c => {
@@ -1162,23 +1164,26 @@
             // 4. Render Teacher Right Column
             let tHtml = '';
             iList.forEach((item, idx) => {
+                // Determine prefix for teacher column too
+                const prefix = item.t.length % 2 === 0 ? "Ms." : "Mr.";
+                
                 tHtml += `
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAcc('teacher', ${idx})">
                         <div class="acc-title-container">
-                            ${item.t} <span style="font-weight:400; color:#666; font-size:0.9em;">- ${item.c}</span>
+                             ${prefix} ${item.t} <span style="font-weight:400; color:#666; font-size:0.9em;">- ${item.c}</span>
                         </div>
                         <div class="acc-badge-container">
                             <span class="streak-badge">${item.count} Students</span>
                             <span class="accordion-icon" id="icon-teacher-${idx}">▼</span>
                         </div>
                     </div>
-                    <div class="accordion-content" id="acc-teacher-${idx}">
-                        <table style="width:100%; font-size:0.85rem;">
+                    <div class="accordion-content" id="acc-teacher-${idx}" style="padding:0;">
+                        <table style="width:100%; font-size:0.85rem; border-collapse: collapse;">
                             ${item.students.map(st => `
-                                <tr>
-                                    <td style="text-align:left; border:none; padding:4px;">${st.name}</td>
-                                    <td style="text-align:right; border:none; padding:4px; font-weight:bold; color:#c53030;">${st.streak} Wks</td>
+                                <tr style="border-bottom: 1px solid #f0f0f0;">
+                                    <td style="text-align:left; border:none; padding:10px 15px;">${st.name}</td>
+                                    <td style="text-align:right; border:none; padding:10px 15px; font-weight:bold; color:#c53030;">${st.streak} Wks</td>
                                 </tr>
                             `).join('')}
                         </table>
