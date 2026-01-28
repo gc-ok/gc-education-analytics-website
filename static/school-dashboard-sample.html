@@ -1076,29 +1076,30 @@
             const weeks = parseInt(document.getElementById('streakWeeks').value);
             const studentContainer = document.getElementById('intervention-student-list');
             const teacherContainer = document.getElementById('intervention-teacher-list');
-        
-            // 1. Filter At-Risk Students
+
+            // 1. Filter At-Risk Students (Must have at least 1 stubborn F to appear in list)
             const atRisk = studentDB.filter(s => s.courses.some(c => c.streak >= weeks));
             
-            // Sort students by severity
+            // Sort students by severity (most stubborn Fs first)
             atRisk.sort((a,b) => {
                 const countA = a.courses.filter(c => c.streak >= weeks).length;
                 const countB = b.courses.filter(c => c.streak >= weeks).length;
                 return countB - countA;
             });
-        
+
             document.getElementById('risk-count').textContent = atRisk.length;
-        
+
             // 2. Render Student Left Column
             if(atRisk.length === 0) {
                 studentContainer.innerHTML = '<div style="padding:20px; text-align:center;">No streaks found.</div>';
                 teacherContainer.innerHTML = '<div style="padding:20px; text-align:center;">No data.</div>';
                 return;
             }
-        
+
             let sHtml = '';
             atRisk.forEach((s, idx) => {
-                const badCourses = s.courses.filter(c => c.streak >= weeks);
+                // We still calculate this just for the "3 Classes" badge count
+                const badCount = s.courses.filter(c => c.streak >= weeks).length;
                 
                 sHtml += `
                 <div class="accordion-item">
@@ -1107,18 +1108,32 @@
                             ${s.name} <span style="font-weight:400; color:#666; font-size:0.9em;">(${s.id})</span>
                         </div>
                         <div class="acc-badge-container">
-                            <span class="streak-badge">${badCourses.length} Classes</span>
+                            <span class="streak-badge">${badCount} Classes</span>
                             <span class="accordion-icon" id="icon-student-${idx}">▼</span>
                         </div>
                     </div>
                     <div class="accordion-content" id="acc-student-${idx}">
                         <table style="width:100%; font-size:0.9rem;">
-                            ${badCourses.map(c => `
-                                <tr>
-                                    <td style="text-align:left; border:none; padding:4px;">${c.course} (${c.teacher})</td>
-                                    <td style="text-align:right; border:none; padding:4px; color:#c53030; font-weight:bold;">${c.streak} Wks</td>
+                            ${s.courses.map(c => {
+                                const isFailing = c.streak >= weeks;
+                                
+                                // Conditional Styling
+                                const rowBg = isFailing ? '#fff5f5' : 'transparent';
+                                const textColor = isFailing ? '#c53030' : '#28a745'; // Red vs Green
+                                const statusText = isFailing ? `⚠️ ${c.streak} Wks` : `${c.grade}`; 
+                                const weight = isFailing ? 'bold' : 'normal';
+
+                                return `
+                                <tr style="background-color: ${rowBg}; border-bottom:1px solid #eee;">
+                                    <td style="text-align:left; border:none; padding:6px 4px;">
+                                        ${c.course} <span style="color:#999; font-size:0.85em;">(${c.teacher})</span>
+                                    </td>
+                                    <td style="text-align:right; border:none; padding:6px 4px; color:${textColor}; font-weight:${weight};">
+                                        ${statusText}
+                                    </td>
                                 </tr>
-                            `).join('')}
+                                `;
+                            }).join('')}
                         </table>
                         <div style="text-align:right; margin-top:10px;">
                             <button class="action-btn" onclick="openNoteModal('${s.name.replace(/'/g,"\\'")}')">Add Note</button>
@@ -1127,14 +1142,14 @@
                 </div>`;
             });
             studentContainer.innerHTML = sHtml;
-        
+
             // 3. Aggregate Teacher Data (Right Column)
+            // NOTE: Teachers still only show up if they have failing students.
             const iTMap = {};
             atRisk.forEach(s => {
                 s.courses.forEach(c => {
                     if(c.streak >= weeks) {
                         const key = c.teacher + "|" + c.course;
-                        // We now store an array of 'students' for the drill-down
                         if(!iTMap[key]) iTMap[key] = { t: c.teacher, c: c.course, count: 0, students: [] };
                         iTMap[key].count++;
                         iTMap[key].students.push({ name: s.name, streak: c.streak });
@@ -1143,8 +1158,8 @@
             });
             
             const iList = Object.values(iTMap).sort((a,b) => b.count - a.count).slice(0, 10);
-        
-            // 4. Render Teacher Right Column (As Accordions)
+
+            // 4. Render Teacher Right Column
             let tHtml = '';
             iList.forEach((item, idx) => {
                 tHtml += `
@@ -1163,7 +1178,7 @@
                             ${item.students.map(st => `
                                 <tr>
                                     <td style="text-align:left; border:none; padding:4px;">${st.name}</td>
-                                    <td style="text-align:right; border:none; padding:4px; font-weight:bold;">${st.streak} Wks</td>
+                                    <td style="text-align:right; border:none; padding:4px; font-weight:bold; color:#c53030;">${st.streak} Wks</td>
                                 </tr>
                             `).join('')}
                         </table>
@@ -1172,6 +1187,7 @@
             });
             teacherContainer.innerHTML = tHtml;
         }
+
         
         // Updated Toggle Function (Handles both Student and Teacher sides)
         function toggleAcc(type, id) {
