@@ -727,7 +727,6 @@
 
         // --- 1. DATA GENERATION ENGINE ---
         function initData() {
-
             // 1. Generate Students
             for(let i=0; i<TOTAL_STUDENTS; i++) {
                 const fn = FIRST_NAMES[Math.floor(Math.random()*FIRST_NAMES.length)];
@@ -739,11 +738,11 @@
                 if(ln[0] <= 'G') grp = 'Group A-G';
                 else if(ln[0] <= 'O') grp = 'Group H-O';
 
-                // DETERMINE PERSONA (Crucial for realistic stats)
+                // DETERMINE PERSONA
                 const pRand = Math.random();
                 let persona = 'average';
-                if(pRand < 0.25) persona = 'honor';      // 25% are Honor students
-                else if(pRand > 0.85) persona = 'risk';  // 15% are At-Risk
+                if(pRand < 0.25) persona = 'honor';      
+                else if(pRand > 0.85) persona = 'risk';  
 
                 const student = {
                     id: 10000 + i,
@@ -754,13 +753,14 @@
                     fCount: 0,
                     isAllAs: true,
                     isAllAsBs: true,
-                    isNewF: Math.random() < 0.02,
-                    isClearedF: Math.random() < 0.01,
-                    isIncreasedF: Math.random() < 0.03,
-                    isReducedF: Math.random() < 0.015,
-                    isGpaTo4: Math.random() < 0.005,
-                    isNewTardy: Math.random() < 0.03,
-                    isNewGuidance: Math.random() < 0.01
+                    // Flags initialized to false, calculated AFTER grades
+                    isNewF: false,
+                    isClearedF: false,
+                    isIncreasedF: false,
+                    isReducedF: false,
+                    isGpaTo4: false,
+                    isNewTardy: false,
+                    isNewGuidance: false
                 };
 
                 // Generate 6 Classes
@@ -768,24 +768,21 @@
                     const courseName = COURSES[Math.floor(Math.random()*COURSES.length)];
                     const tName = TEACHERS[Math.floor(Math.random()*TEACHERS.length)];
                     
-                    // GRADE LOGIC BASED ON PERSONA
+                    // GRADE LOGIC
                     const gRand = Math.random();
                     let gradeChar = 'C';
 
                     if(persona === 'honor') {
-                        // Honor students mostly As, some Bs
                         if(gRand < 0.85) gradeChar = 'A';
                         else if(gRand < 0.98) gradeChar = 'B';
                         else gradeChar = 'C';
                     } else if(persona === 'risk') {
-                        // Risk students struggle more
                         if(gRand < 0.10) gradeChar = 'A';
                         else if(gRand < 0.30) gradeChar = 'B';
                         else if(gRand < 0.60) gradeChar = 'C';
                         else if(gRand < 0.85) gradeChar = 'D';
                         else gradeChar = 'F';
                     } else {
-                        // Average students
                         if(gRand < 0.25) gradeChar = 'A';
                         else if(gRand < 0.55) gradeChar = 'B';
                         else if(gRand < 0.85) gradeChar = 'C';
@@ -804,6 +801,29 @@
 
                     student.courses.push({ course: courseName, teacher: tName, grade: gradeChar, streak: streak });
                 }
+
+                // --- CRITICAL FIX: LOGIC CONSISTENCY ---
+                // Now that we know the grades, assign the flags logically.
+                
+                if (student.fCount > 0) {
+                    // If failing, they CANNOT be a "Cleared F"
+                    // They MIGHT be a "New F" (random chance representing history)
+                    if(Math.random() < 0.20) student.isNewF = true; 
+                    
+                    // They MIGHT have "Increased Fs"
+                    else if(Math.random() < 0.15) student.isIncreasedF = true;
+                } else {
+                    // If passing, they MIGHT be a "Cleared F" (was failing previously)
+                    if(Math.random() < 0.05) student.isClearedF = true;
+                    
+                    // If they have all As, maybe they just reached 4.0
+                    if(student.isAllAs && Math.random() < 0.10) student.isGpaTo4 = true;
+                }
+                
+                // Independent flags
+                if(Math.random() < 0.03) student.isNewTardy = true;
+                if(Math.random() < 0.01) student.isNewGuidance = true;
+
                 studentDB.push(student);
             }
 
