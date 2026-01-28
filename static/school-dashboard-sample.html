@@ -902,7 +902,7 @@
 
         function init() {
             document.getElementById('header-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            initData(); // Build Database
+            initData(); 
             
             // Render KPI
             document.getElementById('kpi-percent').textContent = stats.TotalFailingPct.total + "%";
@@ -912,7 +912,9 @@
             renderTopList('teachers', 'volume');
             renderTopList('classes', 'volume');
             
-            // Init Chart
+            // ADD THIS LINE:
+            renderIntervention(); 
+            
             initChart();
             initVelocityChart();
         }
@@ -1059,7 +1061,7 @@
         function renderIntervention() {
             const weeks = parseInt(document.getElementById('streakWeeks').value);
             const listDiv = document.getElementById('intervention-student-list');
-            const tableBody = document.getElementById('intervention-teacher-list');
+            const tableBody = document.getElementById('intervention-teacher-list'); // <--- Defined here
 
             // Find students with streak >= weeks
             const atRisk = studentDB.filter(s => s.courses.some(c => c.streak >= weeks));
@@ -1085,7 +1087,6 @@
                 const badCourses = s.courses.filter(c => c.streak >= weeks);
                 const count = badCourses.length;
                 
-                // UPDATED HTML STRUCTURE WITH CLASSES
                 html += `
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAcc(${idx})">
@@ -1127,7 +1128,8 @@
             });
             const iList = Object.values(iTMap).sort((a,b) => b.count - a.count).slice(0,10);
             
-            table.innerHTML = iList.map(i => `
+            // --- FIX IS HERE: Changed 'table.innerHTML' to 'tableBody.innerHTML' ---
+            tableBody.innerHTML = iList.map(i => `
                 <tr><td>${i.t}</td><td>${i.c}</td><td class="val-col" style="color:#c53030;">${i.count}</td></tr>
             `).join('');
         }
