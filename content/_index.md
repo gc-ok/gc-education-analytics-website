@@ -15,14 +15,6 @@ hero:
 <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/gcastillo-gceducationanalytics', text: 'Schedule a meeting', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
 <!-- Calendly badge widget end -->
 
-<div id="homepage-logo-container" class="text-center">
-  {{< figure
-    src="images/gceducationlogo.png"
-    alt="GC Education Analytics LLC Logo"
-    class="mx-auto my-12 md:my-16 rounded-lg shadow-lg"
-  >}}
-</div>
-
 # Unlock More Time to Work with Students—Spend Less on Data and Computer Tasks
 
 GC Education Analytics empowers schools by not only transforming overwhelming spreadsheets into clear, actionable insights, but by also automating day-to-day tasks in education.
