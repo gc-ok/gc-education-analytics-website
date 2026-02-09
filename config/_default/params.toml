@@ -16,7 +16,7 @@ email = "gcastillo@gceducationanalytics.com"
 # Refer to Blowfish docs for which icon names are supported (e.g., "linkedin", "facebook", "twitter")
 social = [
   { name = "linkedin", link = "https://www.linkedin.com/in/gerardo-castillo-10a175b4/" }, # Replace # with your actual LinkedIn URL later
-  { name = "facebook", link = "#" }  # Replace # with your actual Facebook URL later
+  { name = "facebook", link = "https://www.facebook.com/profile.php?id=61586253026874" }  # Replace # with your actual Facebook URL later
   # { name = "email", link = "mailto:gcastillo@gceducationanalytics.com" } # Already have email above, but some themes use this for an icon
 ]
 
