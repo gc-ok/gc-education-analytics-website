@@ -51,6 +51,11 @@
   weight = 10
 
 [[footer]]
+  name = "Terms of Service"
+  pageRef = "/terms"
+  weight = 10
+
+[[footer]]
   name = "Contact"
   url = "mailto:gcastillo@gceducationanalytics.com"
   weight = 20
